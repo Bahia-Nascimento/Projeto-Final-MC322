@@ -80,4 +80,9 @@ public class Faculdade {
         return materiaOferecidas.add(m);
     }
 
+    @Override
+    public String toString() {
+        return "nome: " + getNome() +
+            ", cnpj: " + getCpnj() ;
+    }
 }

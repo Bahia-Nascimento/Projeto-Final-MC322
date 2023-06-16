@@ -65,4 +65,14 @@ public class Aluno extends Pessoa {
     public String getCadastro() {
         return this.ra;
     }
+
+    @Override
+    public String toString() {
+        return "cpf: " + getCpf() +
+            ", nome: " + getNome() +
+            ", dataNascimento: " + getDataNascimento() +
+            ", dataCadastro: " + getDataCadastro() +
+            ", ra: " + getRa() +
+            ", curso: " + getCurso();
+    }
 }

@@ -23,4 +23,10 @@ public class Materia {
         return this.requisitos;
     }
     
+    @Override
+    public String toString() {
+        return "código: " + getCodigo() +
+            ", nota minima: " + getNotaMin()+
+            ", requisitos: " + getRequisitos() ;
+    }
 }

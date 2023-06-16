@@ -53,4 +53,10 @@ public class Turma {
         this.professor = professor;
     }
     
+    @Override
+    public String toString() {
+        return "matéria: " + getMateria() +
+            ", código: " + getCodigo() +
+            ", professor: " + getProfessor().getNome() ;
+    }
 }

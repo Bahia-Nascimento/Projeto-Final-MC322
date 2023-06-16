@@ -38,4 +38,12 @@ public class Professor extends Pessoa{
         return false;
     }
     
+    @Override
+    public String toString() {
+        return "cpf: " + getCpf() +
+            ", nome: " + getNome() +
+            ", dataNascimento: " + getDataNascimento() +
+            ", dataCadastro: " + getDataCadastro() +
+            ", cadastro: " + getCadastro();
+    }
 }
