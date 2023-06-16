@@ -40,28 +40,44 @@ public class Faculdade {
         return this.materiaOferecidas;
     }
 
-    public void addAluno() {
-
+    public Boolean addAluno(Aluno a) {
+        if (listaAlunos.contains(a)) {
+            return false;
+        }
+        listaAlunos.add(a);
+        return true;
     }
 
-    public void remAluno() {
-
+    public Boolean remAluno(String ra) {
+        for (Aluno a : listaAlunos) {
+            if (a.getCadastro().equals(ra)) {
+                listaAlunos.remove(a);
+                return true;
+            }
+        }
+        return false;
     }
 
-    public void addProfessor() {
-
+    public Boolean addProfessor(Professor p) {
+        if (listaProfessores.contains(p)) {
+            return false;
+        }
+        listaProfessores.add(p);
+        return true;
     }
 
-    public void remProfessor() {
-
+    public Boolean remProfessor(String cadastro) {
+        for (Professor p : listaProfessores) {
+            if (p.getCadastro().equals(cadastro)) {
+                listaProfessores.remove(p);
+                return true;
+            }
+        }
+        return false;
     }
 
-    public void addMateria() {
-
-    }
-
-    public void remMateria() {
-
+    public Boolean addMateria(Materia m) {
+        return materiaOferecidas.add(m);
     }
 
 }

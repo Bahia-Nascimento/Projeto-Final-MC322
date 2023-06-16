@@ -20,12 +20,22 @@ public class Professor extends Pessoa{
         return this.listaTurmas;
     }
 
-    public void addTurma() {
-
+    public Boolean addTurma(Turma t) {
+        if (listaTurmas.contains(t)) {
+            return false;
+        }
+        listaTurmas.add(t);
+        return true;
     }
-
-    public void remTurma() {
-        
+    
+    public Boolean remTurma(String codigo) {
+        for (Turma t : listaTurmas) {
+            if (t.getCodigo().equals(codigo)) {
+                listaTurmas.remove(t);
+                return true;
+            }
+        }
+        return false;
     }
     
 }

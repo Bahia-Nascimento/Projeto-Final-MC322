@@ -27,12 +27,22 @@ public class Turma {
         return this.listaAlunos;
     }
 
-    public void addAluno() {
-
+    public Boolean addAluno(Aluno a) {
+        if (listaAlunos.contains(a)) {
+            return false;
+        }
+        listaAlunos.add(a);
+        return true;
     }
 
-    public void remAluno() {
-
+    public Boolean remAluno(String ra) {
+        for (Aluno a : listaAlunos) {
+            if (a.getCadastro().equals(ra)) {
+                listaAlunos.remove(a);
+                return true;
+            }
+        }
+        return false;
     }
 
     public Professor getProfessor() {
