@@ -46,4 +46,26 @@ public abstract class Pessoa {
     }
     
     public abstract String getCadastro();
+
+    @Override
+    public int hashCode() {
+        return cpf.hashCode();
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+        if (getClass() != obj.getClass())
+            return false;
+        Pessoa other = (Pessoa) obj;
+        if (cpf == null) {
+            if (other.cpf != null)
+                return false;
+        } else if (!cpf.equals(other.cpf))
+            return false;
+        return true;
+    }
 }

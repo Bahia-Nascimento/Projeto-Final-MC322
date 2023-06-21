@@ -3,14 +3,14 @@ import java.util.HashSet;
 
 public class Faculdade {
     private String nome;
-    private final String cpnj;
+    private final String cnpj;
     private ArrayList<Aluno> listaAlunos;
     private ArrayList<Professor> listaProfessores;
     private HashSet<Materia> materiaOferecidas;
 
     public Faculdade(String nome, String cpnj) {
         this.nome = nome;
-        this.cpnj = cpnj;
+        this.cnpj = cpnj;
         this.listaAlunos = new ArrayList<Aluno>();
         this.listaProfessores = new ArrayList<Professor>();
         this.materiaOferecidas = new HashSet<Materia>();
@@ -24,8 +24,8 @@ public class Faculdade {
         this.nome = nome;
     }
 
-    public String getCpnj() {
-        return this.cpnj;
+    public String getCnpj() {
+        return this.cnpj;
     }
 
     public ArrayList<Aluno> getListaAlunos() {
@@ -83,6 +83,28 @@ public class Faculdade {
     @Override
     public String toString() {
         return "nome: " + getNome() +
-            ", cnpj: " + getCpnj() ;
+            ", cnpj: " + getCnpj() ;
+    }
+
+    @Override
+    public int hashCode() {
+        return cnpj.hashCode();
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+        if (getClass() != obj.getClass())
+            return false;
+        Faculdade other = (Faculdade) obj;
+        if (cnpj == null) {
+            if (other.cnpj != null)
+                return false;
+        } else if (!cnpj.equals(other.cnpj))
+            return false;
+        return true;
     }
 }
