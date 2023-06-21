@@ -16,7 +16,7 @@
             "name": "Launch App",
             "request": "launch",
             "mainClass": "app.App",
-            "vmArgs": "--module-path lib --add-modules javafx.controls,javafx.fxml -Dprism.verbose=true"
+            "vmArgs": "--module-path lib --add-modules javafx.controls,javafx.fxml -Dprism.verbose=true -Dfile.encoding=UTF-8"
         }
     ]
 }
