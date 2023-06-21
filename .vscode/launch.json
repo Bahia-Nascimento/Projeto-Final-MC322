@@ -9,7 +9,14 @@
             "name": "Launch App Windows",
             "request": "launch",
             "mainClass": "app.App",
-            "vmArgs": "--module-path lib/javafx/windows --add-modules javafx.controls,javafx.fxml -Dprism.verbose=true -Dfile.encoding=UTF-8 -Djava.library.path=lib/javafx/windows"
+            "vmArgs": "--module-path lib/javafx/windows --add-modules javafx.controls,javafx.fxml -Dfile.encoding=UTF-8 -Djava.library.path=lib/javafx/windows"
+        },
+        {
+            "type": "java",
+            "name": "Launch App Linux",
+            "request": "launch",
+            "mainClass": "app.App",
+            "vmArgs": "--module-path lib/javafx/linux --add-modules javafx.controls,javafx.fxml -Dfile.encoding=UTF-8 -Djava.library.path=lib/javafx/linux"
         }
     ]
 }
