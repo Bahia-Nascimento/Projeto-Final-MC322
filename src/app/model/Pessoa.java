@@ -2,7 +2,7 @@ package app.model;
 import java.time.LocalDate;
 
 public abstract class Pessoa {
-    private CPF cpf;
+    private final CPF cpf;
     private String nome;
     private final LocalDate dataNascimento;
     private final LocalDate dataCadastro;
@@ -13,10 +13,6 @@ public abstract class Pessoa {
         this.nome = nome;
         this.dataNascimento = dataNascimento;
         this.dataCadastro = dataCadastro;
-    }
-
-    public CPF getCpf() {
-        return this.cpf;
     }
 
     public void setCpf(CPF cpf) {
@@ -38,7 +34,9 @@ public abstract class Pessoa {
     public LocalDate getDataCadastro() {
         return this.dataCadastro;
     }
-
+    
+    public abstract String getCadastro();
+    
     public String toString() {
         return "cpf: " + getCpf() +
             ", nome: " + getNome() +
@@ -46,7 +44,7 @@ public abstract class Pessoa {
             ", dataCadastro: " + getDataCadastro();
     }
     
-    public abstract String getCadastro();
+    
 
     @Override
     public int hashCode() {

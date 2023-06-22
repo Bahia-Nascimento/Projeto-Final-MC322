@@ -3,8 +3,8 @@ import java.util.HashSet;
 
 public class Materia {
     private final String codigo;
-    private final double notaMin;
-    private final HashSet<Materia> requisitos;
+    private double notaMin;
+    private HashSet<Materia> requisitos;
 
     public Materia(String codigo, double notaMin, HashSet<Materia> requisitos) {
         this.codigo = codigo;
@@ -20,10 +20,36 @@ public class Materia {
         return this.notaMin;
     }
 
+    public void setNotaMin(double notaMin) {
+        this.notaMin = notaMin;
+    }
+
     public HashSet<Materia> getRequisitos() {
         return this.requisitos;
     }
+
+    public void setRequisitos(HashSet<Materia> requisitos) {
+        this.requisitos = requisitos;
+    }
+
+    public boolean addRequisito(Materia m){
+        if (requisitos.contains(m)) {
+            return false;
+        }
+        requisitos.add(m);
+        return true;
+    }
     
+    public Boolean remRequisito(String codigo) {
+        for (Materia m : requisitos) {
+            if (m.getCodigo().equals(codigo)) {
+                requisitos.remove(m);
+                return true;
+            }
+        }
+        return false;
+    }
+
     @Override
     public String toString() {
         return "código: " + getCodigo() +

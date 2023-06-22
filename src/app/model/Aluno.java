@@ -9,7 +9,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 public class Aluno extends Pessoa {
-    private final String curso;
+    private String curso;
     private final String ra;
     private Set<Materia> grade;
     private Set<Turma> turmas;
@@ -22,9 +22,16 @@ public class Aluno extends Pessoa {
         this.grade = new HashSet<Materia>(grade);
         this.turmas = new HashSet<Turma>(turmas);
     }
+    public String getCadastro() {
+            return this.ra;
+        }
 
     public String getCurso() {
         return this.curso;
+    }
+    
+    public void setCurso(String curso) {
+        this.curso = curso;
     }
 
     public String getRa() {
@@ -34,7 +41,19 @@ public class Aluno extends Pessoa {
     public Set<Materia> getGrade() {
         return this.grade;
     }
+    
+    public void setGrade(Set<Materia> grade) {
+        this.grade = grade;
+    }
 
+    public Set<Turma> getTurmas() {
+        return this.turmas;
+    }
+    
+    public void setTurmas(Set<Turma> turmas) {
+        this.turmas = turmas;
+    }
+    
     public Boolean eliminarMateria(Materia m, int nota) {
         // Remove materia da grade do aluno se sua nota for maior ou igual a nota minima da materia
 
@@ -46,9 +65,7 @@ public class Aluno extends Pessoa {
 
     }
 
-    public Set<Turma> getTurmas() {
-        return this.turmas;
-    }
+
 
     public Boolean addTurma(Turma t) {
         if (turmas.contains(t)) {
@@ -68,9 +85,7 @@ public class Aluno extends Pessoa {
         return false;
     }
 
-    public String getCadastro() {
-        return this.ra;
-    }
+    
 
     @Override
     public String toString() {
@@ -81,4 +96,7 @@ public class Aluno extends Pessoa {
             ", ra: " + getRa() +
             ", curso: " + getCurso();
     }
+
+
+    
 }
