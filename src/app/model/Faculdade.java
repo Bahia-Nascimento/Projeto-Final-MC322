@@ -4,12 +4,12 @@ import java.util.HashSet;
 
 public class Faculdade {
     private String nome;
-    private final String cnpj;
+    private final CNPJ cnpj;
     private ArrayList<Aluno> listaAlunos;
     private ArrayList<Professor> listaProfessores;
     private HashSet<Materia> materiaOferecidas;
 
-    public Faculdade(String nome, String cnpj) {
+    public Faculdade(String nome, CNPJ cnpj) {
         this.nome = nome;
         this.cnpj = cnpj;
         this.listaAlunos = new ArrayList<Aluno>();
@@ -25,7 +25,7 @@ public class Faculdade {
         this.nome = nome;
     }
 
-    public String getCnpj() {
+    public CNPJ getCnpj() {
         return this.cnpj;
     }
 
@@ -41,7 +41,7 @@ public class Faculdade {
         return this.materiaOferecidas;
     }
 
-    public Boolean addAluno(Aluno a) {
+    public boolean addAluno(Aluno a) {
         if (listaAlunos.contains(a)) {
             return false;
         }
@@ -49,7 +49,7 @@ public class Faculdade {
         return true;
     }
 
-    public Boolean remAluno(String ra) {
+    public boolean remAluno(String ra) {
         for (Aluno a : listaAlunos) {
             if (a.getCadastro().equals(ra)) {
                 listaAlunos.remove(a);
@@ -59,7 +59,7 @@ public class Faculdade {
         return false;
     }
 
-    public Boolean addProfessor(Professor p) {
+    public boolean addProfessor(Professor p) {
         if (listaProfessores.contains(p)) {
             return false;
         }
@@ -67,7 +67,7 @@ public class Faculdade {
         return true;
     }
 
-    public Boolean remProfessor(String cadastro) {
+    public boolean remProfessor(String cadastro) {
         for (Professor p : listaProfessores) {
             if (p.getCadastro().equals(cadastro)) {
                 listaProfessores.remove(p);
@@ -77,7 +77,7 @@ public class Faculdade {
         return false;
     }
 
-    public Boolean addMateria(Materia m) {
+    public boolean addMateria(Materia m) {
         return materiaOferecidas.add(m);
     }
 

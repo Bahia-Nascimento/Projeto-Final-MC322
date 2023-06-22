@@ -4,22 +4,23 @@ package app.model;
 
 
 import java.time.LocalDate;
-import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashSet;
+import java.util.Set;
 
 public class Aluno extends Pessoa {
     private final String curso;
     private final String ra;
-    private HashSet<Materia> grade;
-    private ArrayList<Turma> listaTurmas;
+    private Set<Materia> grade;
+    private Set<Turma> turmas;
     
 
-    public Aluno(String cpf, String nome, LocalDate dataNascimento, LocalDate dataCadastro, String curso, String ra) {
+    public Aluno(CPF cpf, String nome, LocalDate dataNascimento, LocalDate dataCadastro, String curso, String ra, Collection<Materia> grade, Collection<Turma> turmas) {
         super(cpf, nome, dataNascimento, dataCadastro);
         this.curso = curso;
         this.ra = ra;
-        this.grade = new HashSet<Materia>();
-        this.listaTurmas = new ArrayList<Turma>();
+        this.grade = new HashSet<Materia>(grade);
+        this.turmas = new HashSet<Turma>(turmas);
     }
 
     public String getCurso() {
@@ -30,7 +31,7 @@ public class Aluno extends Pessoa {
         return this.ra;
     }
 
-    public HashSet<Materia> getGrade() {
+    public Set<Materia> getGrade() {
         return this.grade;
     }
 
@@ -45,22 +46,22 @@ public class Aluno extends Pessoa {
 
     }
 
-    public ArrayList<Turma> getListaTurmas() {
-        return this.listaTurmas;
+    public Set<Turma> getTurmas() {
+        return this.turmas;
     }
 
     public Boolean addTurma(Turma t) {
-        if (listaTurmas.contains(t)) {
+        if (turmas.contains(t)) {
             return false;
         }
-        listaTurmas.add(t);
+        turmas.add(t);
         return true;
     }
     
     public Boolean remTurma(String codigo) {
-        for (Turma t : listaTurmas) {
+        for (Turma t : turmas) {
             if (t.getCodigo().equals(codigo)) {
-                listaTurmas.remove(t);
+                turmas.remove(t);
                 return true;
             }
         }

@@ -2,24 +2,24 @@ package app.model;
 import java.time.LocalDate;
 
 public abstract class Pessoa {
-    private String cpf;
+    private CPF cpf;
     private String nome;
     private final LocalDate dataNascimento;
     private final LocalDate dataCadastro;
 
 
-    public Pessoa(String cpf, String nome, LocalDate dataNascimento, LocalDate dataCadastro) {
+    public Pessoa(CPF cpf, String nome, LocalDate dataNascimento, LocalDate dataCadastro) {
         this.cpf = cpf;
         this.nome = nome;
         this.dataNascimento = dataNascimento;
         this.dataCadastro = dataCadastro;
     }
 
-    public String getCpf() {
+    public CPF getCpf() {
         return this.cpf;
     }
 
-    public void setCpf(String cpf) {
+    public void setCpf(CPF cpf) {
         this.cpf = cpf;
     }
 

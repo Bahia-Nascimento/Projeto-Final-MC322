@@ -1,39 +1,37 @@
 package app.model;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
+import java.util.Collection;
+import java.util.HashSet;
+import java.util.Set;
 
 public class Professor extends Pessoa{
     private final String cadastro;
-    private ArrayList<Turma> listaTurmas;
+    private Set<Turma> turmas;
 
 
-    public Professor(String cadastro, ArrayList<Turma> listaTurmas, String cpf, String nome, LocalDate dataNascimento, LocalDate dataCadastro) {
+    public Professor(String cadastro, Collection<Turma> turmas, CPF cpf, String nome, LocalDate dataNascimento, LocalDate dataCadastro) {
         super(cpf, nome, dataNascimento, dataCadastro);
         this.cadastro = cadastro;
-        this.listaTurmas = new ArrayList<Turma>();
+        this.turmas = new HashSet<Turma>(turmas);
     }
 
     public String getCadastro() {
         return this.cadastro;
     }
 
-    public ArrayList<Turma> getListaTurmas() {
-        return this.listaTurmas;
+    public Set<Turma> getTurmas() {
+        return this.turmas;
     }
 
-    public Boolean addTurma(Turma t) {
-        if (listaTurmas.contains(t)) {
-            return false;
-        }
-        listaTurmas.add(t);
-        return true;
+    public boolean addTurma(Turma t) {
+        return turmas.add(t);
     }
     
-    public Boolean remTurma(String codigo) {
-        for (Turma t : listaTurmas) {
+    public boolean remTurma(String codigo) {
+        for (Turma t : turmas) {
             if (t.getCodigo().equals(codigo)) {
-                listaTurmas.remove(t);
+                turmas.remove(t);
                 return true;
             }
         }
@@ -42,10 +40,10 @@ public class Professor extends Pessoa{
     
     @Override
     public String toString() {
-        return "cpf: " + getCpf() +
+        return "Professor(cpf: " + getCpf() +
             ", nome: " + getNome() +
             ", dataNascimento: " + getDataNascimento() +
             ", dataCadastro: " + getDataCadastro() +
-            ", cadastro: " + getCadastro();
+            ", cadastro: " + getCadastro() + ")";
     }
 }
