@@ -3,17 +3,27 @@ import java.util.HashSet;
 
 public class Materia {
     private final String codigo;
+    private int creditos;
     private double notaMin;
     private HashSet<Materia> requisitos;
 
-    public Materia(String codigo, double notaMin, HashSet<Materia> requisitos) {
+    public Materia(String codigo, int creditos, double notaMin, HashSet<Materia> requisitos) {
         this.codigo = codigo;
+        this.creditos = creditos;
         this.notaMin = notaMin;
         this.requisitos = requisitos;
     }
 
     public String getCodigo() {
         return this.codigo;
+    }
+
+    public void setCreditos(int creditos){
+        this.creditos = creditos;
+    }
+
+    public int getCreditos(){
+        return creditos;
     }
 
     public double getNotaMin() {
