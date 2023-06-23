@@ -15,8 +15,8 @@ public abstract class Pessoa {
         this.dataCadastro = dataCadastro;
     }
 
-    public void setCpf(CPF cpf) {
-        this.cpf = cpf;
+    public CPF getCpf(){
+        return this.cpf;
     }
 
     public String getNome() {
