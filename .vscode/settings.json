@@ -6,7 +6,7 @@
     "java.project.referencedLibraries": {
         "include": [
             "lib/*.jar",
-            "lib/javafx/linux/*.jar"
+            "lib/javafx/windows/*.jar"
         ],
         "sources": {
             "lib/javafx/linux/javafx.base.jar": "lib/javafx/linux/src/javafx.base",
@@ -15,7 +15,14 @@
             "lib/javafx/linux/javafx.graphics.jar": "lib/javafx/linux/src/javafx.graphics",
             "lib/javafx/linux/javafx.media.jar": "lib/javafx/linux/src/javafx.media",
             "lib/javafx/linux/javafx.swing.jar": "lib/javafx/linux/src/javafx.swing",
-            "lib/javafx/linux/javafx.web.jar": "lib/javafx/linux/src/javafx.web"
+            "lib/javafx/linux/javafx.web.jar": "lib/javafx/linux/src/javafx.web",
+            "lib/javafx/windows/javafx.base.jar": "lib/javafx/windows/src/javafx.base",
+            "lib/javafx/windows/javafx.controls.jar": "lib/javafx/windows/src/javafx.controls",
+            "lib/javafx/windows/javafx.fxml.jar": "lib/javafx/windows/src/javafx.fxml",
+            "lib/javafx/windows/javafx.graphics.jar": "lib/javafx/windows/src/javafx.graphics",
+            "lib/javafx/windows/javafx.media.jar": "lib/javafx/windows/src/javafx.media",
+            "lib/javafx/windows/javafx.swing.jar": "lib/javafx/windows/src/javafx.swing",
+            "lib/javafx/windows/javafx.web.jar": "lib/javafx/windows/src/javafx.web"
         }
     }
 }

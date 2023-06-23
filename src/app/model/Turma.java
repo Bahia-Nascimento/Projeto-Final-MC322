@@ -54,6 +54,19 @@ public class Turma {
     public void setProfessor(Professor professor) {
         this.professor = professor;
     }
+
+    @Override
+    public int hashCode() {
+        return codigo.hashCode();
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        if (other instanceof Turma t) {
+            return codigo.equals(t.codigo);
+        }
+        return false;
+    }
     
     @Override
     public String toString() {

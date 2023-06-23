@@ -8,6 +8,7 @@ public class Faculdade {
     private ArrayList<Aluno> listaAlunos;
     private ArrayList<Professor> listaProfessores;
     private HashSet<Materia> materiaOferecidas;
+    
 
     public Faculdade(String nome, CNPJ cnpj) {
         this.nome = nome;
@@ -15,6 +16,9 @@ public class Faculdade {
         this.listaAlunos = new ArrayList<Aluno>();
         this.listaProfessores = new ArrayList<Professor>();
         this.materiaOferecidas = new HashSet<Materia>();
+    }
+
+    public void lerDados() {
     }
 
     public String getNome() {
