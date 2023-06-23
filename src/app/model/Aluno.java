@@ -1,8 +1,5 @@
 package app.model;
 
-
-
-
 import java.time.LocalDate;
 import java.util.Collection;
 import java.util.HashSet;
@@ -65,8 +62,6 @@ public class Aluno extends Pessoa {
 
     }
 
-
-
     public Boolean addTurma(Turma t) {
         if (turmas.contains(t)) {
             return false;
@@ -84,7 +79,6 @@ public class Aluno extends Pessoa {
         }
         return false;
     }
-
     
 
     @Override
