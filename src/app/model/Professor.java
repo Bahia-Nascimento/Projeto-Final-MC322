@@ -10,10 +10,10 @@ public class Professor extends Pessoa{
     private Set<Turma> turmas;
 
 
-    public Professor(String cadastro, Collection<Turma> turmas, CPF cpf, String nome, LocalDate dataNascimento, LocalDate dataCadastro) {
+    public Professor(String cadastro, CPF cpf, String nome, LocalDate dataNascimento, LocalDate dataCadastro) {
         super(cpf, nome, dataNascimento, dataCadastro);
         this.cadastro = cadastro;
-        this.turmas = new HashSet<Turma>(turmas);
+        this.turmas = new HashSet<Turma>();
     }
 
     public String getCadastro() {

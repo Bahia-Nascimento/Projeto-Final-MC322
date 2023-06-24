@@ -4,14 +4,12 @@ import java.util.ArrayList;
 
 public class Turma {
     private final Materia materia;
-    private final String codigo;
     private ArrayList<Aluno> listaAlunos;
     private Professor professor;
 
 
-    public Turma(Materia materia, String codigo, Professor professor) {
+    public Turma(Materia materia, Professor professor) {
         this.materia = materia;
-        this.codigo = codigo;
         this.listaAlunos = new ArrayList<Aluno>();
         this.professor = professor;
     }
@@ -22,7 +20,7 @@ public class Turma {
     }
 
     public String getCodigo() {
-        return this.codigo;
+        return this.materia.getCodigo();
     }
 
     public ArrayList<Aluno> getListaAlunos() {
@@ -57,13 +55,13 @@ public class Turma {
 
     @Override
     public int hashCode() {
-        return codigo.hashCode();
+        return this.materia.getCodigo().hashCode();
     }
 
     @Override
     public boolean equals(Object other) {
         if (other instanceof Turma t) {
-            return codigo.equals(t.codigo);
+            return this.materia.getCodigo().equals(t.getCodigo());
         }
         return false;
     }
