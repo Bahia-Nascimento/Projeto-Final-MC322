@@ -1,7 +1,6 @@
 package app.model;
 
 import java.time.LocalDate;
-import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -30,7 +29,7 @@ public class Professor extends Pessoa{
     
     public boolean remTurma(String codigo) {
         for (Turma t : turmas) {
-            if (t.getCodigo().equals(codigo)) {
+            if (t.getMateria().getCodigo().equals(codigo)) {
                 turmas.remove(t);
                 return true;
             }

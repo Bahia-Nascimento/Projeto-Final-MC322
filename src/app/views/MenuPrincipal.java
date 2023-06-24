@@ -93,7 +93,7 @@ public class MenuPrincipal extends View<BorderPane> {
 			Professor teste_prof = new Professor("658262", new CPF("71031371885"), "Luiz Danilo Souza",
 												LocalDate.parse("09/06/1958", formatador), LocalDate.parse("09/06/1958", formatador));
 			Materia teste_mat = new Materia("MC102", 6, null);
-			Turma teste_turma = new Turma(teste_mat, teste_prof);
+			Turma teste_turma = new Turma(teste_mat,"A" ,teste_prof);
 			AtualizarTurma atualizarTurma = new AtualizarTurma(stage, teste_turma);
 			Scene scene_tur = new Scene(atualizarTurma.getNode(), 400, 400);
 			stage.setScene(scene_tur);
