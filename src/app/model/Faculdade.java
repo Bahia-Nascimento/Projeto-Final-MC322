@@ -1,13 +1,16 @@
 package app.model;
 import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 public class Faculdade {
     private String nome;
     private final CNPJ cnpj;
-    private ArrayList<Aluno> listaAlunos;
-    private ArrayList<Professor> listaProfessores;
-    private HashSet<Materia> materiaOferecidas;
+    private final List<Aluno> listaAlunos;
+    private final List<Professor> listaProfessores;
+    private final Set<Materia> materiaOferecidas;
+    private final Set<Turma> turmas;
     
 
     public Faculdade(String nome, CNPJ cnpj) {
@@ -16,6 +19,7 @@ public class Faculdade {
         this.listaAlunos = new ArrayList<Aluno>();
         this.listaProfessores = new ArrayList<Professor>();
         this.materiaOferecidas = new HashSet<Materia>();
+        turmas = new HashSet<>();
     }
 
     public void lerDados() {
@@ -33,16 +37,20 @@ public class Faculdade {
         return this.cnpj;
     }
 
-    public ArrayList<Aluno> getListaAlunos() {
+    public List<Aluno> getListaAlunos() {
         return this.listaAlunos;
     }
 
-    public ArrayList<Professor> getListaProfessores() {
+    public List<Professor> getListaProfessores() {
         return this.listaProfessores;
     }
 
-    public HashSet<Materia> getMateriaOferecidas() {
+    public Set<Materia> getMateriaOferecidas() {
         return this.materiaOferecidas;
+    }
+
+    public Set<Turma> getTurmas() {
+        return turmas;
     }
 
     public boolean addAluno(Aluno a) {
