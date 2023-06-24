@@ -11,11 +11,18 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
+import javafx.stage.Stage;
 
-public class MenuPrincipal implements View<BorderPane> {
+import static app.views.Utils.*;
+
+import app.controllers.MenuPrincipalController;
+
+public class MenuPrincipal extends View<BorderPane> {
 	private BorderPane bp;
+	private MenuPrincipalController controller;
 
-	public MenuPrincipal() {
+	public MenuPrincipal(Stage stage) {
+		super(stage);
 		VBox topo = construirTopo();
 		GridPane centro = construirCentro();
 		HBox base = construirBase();
@@ -23,6 +30,9 @@ public class MenuPrincipal implements View<BorderPane> {
 		bp = new BorderPane(centro);
 		bp.setTop(topo);
 		bp.setBottom(base);
+		bp.getStylesheets().add("resources/css/menu-principal.css");
+
+		controller = new MenuPrincipalController(this);
 	}
 
 	private static VBox construirTopo() {
@@ -43,35 +53,35 @@ public class MenuPrincipal implements View<BorderPane> {
 	}
 
 	private static GridPane construirCentro() {
-		Button botaoCadAluno = new Button("Cadastrar Aluno");
+		Button botaoCadAluno = criarBotao("Cadastrar Aluno");
 		botaoCadAluno.setOnAction(e -> {
 		});
-		Button botaoCadProfessor = new Button("Cadastrar Professor");
+		Button botaoCadProfessor = criarBotao("Cadastrar Professor");
 		botaoCadProfessor.setOnAction(e -> {
 		});
-		Button botaoCadMat = new Button("Cadastrar Matéria");
+		Button botaoCadMat = criarBotao("Cadastrar Matéria");
 		botaoCadMat.setOnAction(e -> {
 		});
-		Button botaoCadTurma = new Button("Cadastrar Turma");
+		Button botaoCadTurma = criarBotao("Cadastrar Turma");
 		botaoCadTurma.setOnAction(e -> {
 		});
 
-		Button botaoVerAlunos = new Button("Visualizar Alunos");
+		Button botaoVerAlunos = criarBotao("Visualizar Alunos");
 		botaoVerAlunos.setOnAction(e -> {
 		});
-		Button botaoVerProfessor = new Button("Visualizar Professores");
+		Button botaoVerProfessor = criarBotao("Visualizar Professores");
 		botaoVerProfessor.setOnAction(e -> {
 		});
-		Button botaoVerMateria = new Button("Visualizar Matérias");
+		Button botaoVerMateria = criarBotao("Visualizar Matérias");
 		botaoVerMateria.setOnAction(e -> {
 		});
-		Button botaoVerTurma = new Button("Visualizar Turma");
+		Button botaoVerTurma = criarBotao("Visualizar Turma");
 		botaoVerTurma.setOnAction(e -> {
 		});
 
 		GridPane centro = new GridPane();
 		centro.setAlignment(Pos.CENTER);
-
+		centro.setId("centro");
 		centro.addRow(0, botaoCadAluno, botaoCadProfessor, botaoCadMat, botaoCadTurma);
 		centro.addRow(1, botaoVerAlunos, botaoVerProfessor, botaoVerMateria, botaoVerTurma);
 		return centro;
@@ -79,10 +89,10 @@ public class MenuPrincipal implements View<BorderPane> {
 
 	private static HBox construirBase() {
 		HBox base = new HBox(10,
-				new Label("Créditos: "),
-				new Text("Breno Nishimoto ([RA aqui])  " +
-						"Gabriel de Carvalho Silva Nascimento ([RA aqui])  " +
-						"Gustavo Souza ([RA aqui])  " +
+				new Label("Créditos:   "),
+				new Text("Breno Nishimoto ([RA aqui])    " +
+						"Gabriel de Carvalho Silva Nascimento ([RA aqui])    " +
+						"Gustavo Souza ([RA aqui])    " +
 						"Mateus da Costa e Silva Rios Alves de Andrade (230806)"));
 		base.setAlignment(Pos.BOTTOM_CENTER);
 		return base;
@@ -91,5 +101,10 @@ public class MenuPrincipal implements View<BorderPane> {
 	@Override
 	public BorderPane getNode() {
 		return bp;
+	}
+
+	@Override
+	public MenuPrincipalController getController() {
+		return controller;
 	}
 }

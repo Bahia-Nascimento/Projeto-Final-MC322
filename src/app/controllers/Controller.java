@@ -1,16 +1,27 @@
 package app.controllers;
 
-import javafx.fxml.FXML;
-import javafx.scene.control.Label;
+import app.App;
+import app.views.MenuPrincipal;
+import app.views.View;
+import javafx.event.ActionEvent;
+import javafx.scene.Node;
+import javafx.scene.Scene;
 
-public class Controller {
+public abstract class Controller<V extends View<?>> {
 
-    @FXML
-    private Label label;
+    protected V view;
 
-    public void initialize() {
-        String javaVersion = System.getProperty("java.version");
-        String javafxVersion = System.getProperty("javafx.version");
-        label.setText("Hello, JavaFX " + javafxVersion + "\nRunning on Java " + javaVersion + ".");
+    Controller(V view) {
+        this.view = view;
+    }
+
+    public void navigateHome(ActionEvent e) {
+        MenuPrincipal mp = new MenuPrincipal(view.getStage());
+        view.getStage().setScene(new Scene(mp.getNode()));
+
+    }
+
+    public V getView() {
+        return view;
     }
 }
