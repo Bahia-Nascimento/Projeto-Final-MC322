@@ -1,6 +1,7 @@
 package app.views;
 
 import javafx.geometry.Pos;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
@@ -15,7 +16,13 @@ import javafx.stage.Stage;
 
 import static app.views.Utils.*;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+
 import app.controllers.MenuPrincipalController;
+import app.model.CPF;
+import app.model.Materia;
+import app.model.Professor;
 
 public class MenuPrincipal extends View<BorderPane> {
 	private BorderPane bp;
@@ -62,9 +69,23 @@ public class MenuPrincipal extends View<BorderPane> {
 		
 		Button botaoCadProfessor = criarBotao("Atualizar Professor");
 		botaoCadProfessor.setOnAction(e -> {
+
+			DateTimeFormatter formatador = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+			Professor teste_prof = new Professor("658262", new CPF("71031371885"), "Luiz Danilo Souza",
+												LocalDate.parse("09/06/1958", formatador), LocalDate.parse("09/06/1958", formatador));
+			AtualizarProfessor atualizarProfessor = new AtualizarProfessor(stage, teste_prof);
+			Scene scene_prof = new Scene(atualizarProfessor.getNode(), 400, 400);
+			stage.setScene(scene_prof);
+
 		});
 		Button botaoCadMat = criarBotao("Atualizar Matéria");
 		botaoCadMat.setOnAction(e -> {
+
+			Materia teste_mat = new Materia("MC102", 6, null);
+			AtualizarMateria atualizarMateria = new AtualizarMateria(stage, teste_mat);
+			Scene scene_mat = new Scene(atualizarMateria.getNode(), 400, 400);
+			stage.setScene(scene_mat);
+
 		});
 		Button botaoCadTurma = criarBotao("Atualizar Turma");
 		botaoCadTurma.setOnAction(e -> {
