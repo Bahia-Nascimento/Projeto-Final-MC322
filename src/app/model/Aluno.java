@@ -65,7 +65,7 @@ public class Aluno extends Pessoa {
     
     public boolean remTurma(String codigo) {
         for (Turma t : turmas) {
-            if (t.getCodigo().equals(codigo)) {
+            if (t.getMateria().getCodigo().equals(codigo)) {
                 turmas.remove(t);
                 return true;
             }

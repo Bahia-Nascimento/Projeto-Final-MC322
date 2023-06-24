@@ -18,10 +18,12 @@ public class AtualizarTurma extends View<BorderPane> {
 
 		centro.addColumn(0,
 				new Label("Código:"),
+				new Label("Horário"),
 				new Label("Professor:"),
 				new Label("Lista de Alunos:"));
 		centro.addColumn(1, 
 				new Text(turma.getMateria().getCodigo()),
+				new Text(turma.getHorario()),
 				new Text(turma.getProfessor().getNome()));
 				//new Text(toString(turma.getListaAlunos())));
 
