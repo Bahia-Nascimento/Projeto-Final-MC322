@@ -28,7 +28,6 @@ public class MenuSuperior extends View<MenuBar> {
 
 	@Override
 	public Controller<? extends View<MenuBar>> getController() {
-		// TODO Auto-generated method stub
 		throw new UnsupportedOperationException("Unimplemented method 'getController'");
 	}
 }

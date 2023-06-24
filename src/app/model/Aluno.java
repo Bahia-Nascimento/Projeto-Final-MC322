@@ -50,16 +50,9 @@ public class Aluno extends Pessoa {
     public void setTurmas(Set<Turma> turmas) {
         this.turmas = turmas;
     }
-    
-    public boolean eliminarMateria(Materia m, int nota) {
-        // Remove materia da grade do aluno se sua nota for maior ou igual a nota minima da materia
 
-        if (nota >= m.getNotaMin()) {
-            grade.remove(m);
-            return true;
-        }
-        return false;
-
+    public void iniciaGrade(){
+        
     }
 
     public boolean addTurma(Turma t) {

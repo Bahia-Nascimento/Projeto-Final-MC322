@@ -4,13 +4,11 @@ import java.util.HashSet;
 public class Materia {
     private final String codigo;
     private int creditos;
-    private double notaMin;
     private HashSet<Materia> requisitos;
 
-    public Materia(String codigo, int creditos, double notaMin, HashSet<Materia> requisitos) {
+    public Materia(String codigo, int creditos,  HashSet<Materia> requisitos) {
         this.codigo = codigo;
         this.creditos = creditos;
-        this.notaMin = notaMin;
         this.requisitos = requisitos;
     }
 
@@ -24,14 +22,6 @@ public class Materia {
 
     public int getCreditos(){
         return creditos;
-    }
-
-    public double getNotaMin() {
-        return this.notaMin;
-    }
-
-    public void setNotaMin(double notaMin) {
-        this.notaMin = notaMin;
     }
 
     public HashSet<Materia> getRequisitos() {
@@ -63,7 +53,7 @@ public class Materia {
     @Override
     public String toString() {
         return "código: " + getCodigo() +
-            ", nota minima: " + getNotaMin()+
+            ", créditos: " + getCreditos()+
             ", requisitos: " + getRequisitos() ;
     }
 
