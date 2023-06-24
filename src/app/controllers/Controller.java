@@ -1,11 +1,8 @@
 package app.controllers;
 
 import app.App;
-import app.views.MenuPrincipal;
 import app.views.View;
 import javafx.event.ActionEvent;
-import javafx.scene.Node;
-import javafx.scene.Scene;
 
 public abstract class Controller<V extends View<?>> {
 

@@ -5,6 +5,7 @@ import app.model.Aluno;
 import app.model.Curso;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
+import javafx.scene.control.ToolBar;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.text.Text;
@@ -18,9 +19,9 @@ public class AtualizarAluno extends View<BorderPane> {
 
 		GridPane centro = new GridPane();
 
-		ChoiceBox<Curso> cb = new ChoiceBox<>();
-		cb.getItems().addAll(Curso.CIENCIA, Curso.ENGENHARIA);
-		cb.setValue(aluno.getCurso());
+		ChoiceBox<Curso> cursoSelecionado = new ChoiceBox<>();
+		cursoSelecionado.getItems().addAll(Curso.CIENCIA, Curso.ENGENHARIA);
+		cursoSelecionado.setValue(aluno.getCurso());
 
 		centro.addColumn(0, 
 				new Label("RA:"),
@@ -35,9 +36,10 @@ public class AtualizarAluno extends View<BorderPane> {
 				new Text(aluno.getCpf().valor()),
 				new Text(aluno.getDataNascimento().format(Utils.formatadorPadrao)),
 				new Text(aluno.getDataCadastro().format(Utils.formatadorPadrao)),
-				cb);
+				cursoSelecionado);
 
 		principal = new BorderPane(centro);
+		new ToolBar();
 	}
 
 	@Override

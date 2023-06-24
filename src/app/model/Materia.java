@@ -40,7 +40,7 @@ public class Materia {
         return true;
     }
     
-    public Boolean remRequisito(String codigo) {
+    public boolean remRequisito(String codigo) {
         for (Materia m : requisitos) {
             if (m.getCodigo().equals(codigo)) {
                 requisitos.remove(m);

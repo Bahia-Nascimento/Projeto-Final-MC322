@@ -64,7 +64,7 @@ public class MenuPrincipal extends View<BorderPane> {
 
 	private GridPane construirCentro() {
 		Button botaoCadAluno = criarBotao("Atualizar Aluno");
-		botaoCadAluno.setOnAction(controller::atualizarAluno);
+		botaoCadAluno.setOnAction(e -> controller.atualizarAluno(e, stage));
 		
 		Button botaoCadProfessor = criarBotao("Atualizar Professor");
 		botaoCadProfessor.setOnAction(e -> {
