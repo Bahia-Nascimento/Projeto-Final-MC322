@@ -12,7 +12,7 @@ public class Aluno extends Pessoa {
     private Set<Turma> turmas;
     
 
-    public Aluno(CPF cpf, String nome, LocalDate dataNascimento, LocalDate dataCadastro, String curso, String ra, Collection<Materia> grade, Collection<Turma> turmas) {
+    public Aluno(String nome, CPF cpf, LocalDate dataNascimento, LocalDate dataCadastro, String curso, String ra) {
         super(cpf, nome, dataNascimento, dataCadastro);
         this.curso = curso;
         this.ra = ra;
@@ -50,16 +50,9 @@ public class Aluno extends Pessoa {
     public void setTurmas(Set<Turma> turmas) {
         this.turmas = turmas;
     }
-    
-    public Boolean eliminarMateria(Materia m, int nota) {
-        // Remove materia da grade do aluno se sua nota for maior ou igual a nota minima da materia
 
-        if (nota >= m.getNotaMin()) {
-            grade.remove(m);
-            return true;
-        }
-        return false;
-
+    public void iniciaGrade(){
+        
     }
 
     public Boolean addTurma(Turma t) {

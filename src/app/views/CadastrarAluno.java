@@ -18,13 +18,11 @@ public class CadastrarAluno extends View<BorderPane> {
 
 	@Override
 	public BorderPane getNode() {
-		// TODO Auto-generated method stub
 		throw new UnsupportedOperationException("Unimplemented method 'getNode'");
 	}
 
 	@Override
 	public Controller<? extends View<BorderPane>> getController() {
-		// TODO Auto-generated method stub
 		throw new UnsupportedOperationException("Unimplemented method 'getController'");
 	}
 	
