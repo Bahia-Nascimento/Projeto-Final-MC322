@@ -35,8 +35,6 @@ public class MenuPrincipal extends View<BorderPane> {
 		bp.setTop(topo);
 		bp.setBottom(base);
 		bp.getStylesheets().add("resources/css/menu-principal.css");
-
-		
 	}
 
 	private static VBox construirTopo() {
@@ -58,10 +56,11 @@ public class MenuPrincipal extends View<BorderPane> {
 
 	private GridPane construirCentro() {
 		Button botaoCadAluno = criarBotao("Atualizar Aluno");
-		botaoCadAluno.setOnAction(controller::navigateHome);
+		botaoCadAluno.setOnAction(controller::atualizarAluno);
 		
 		Button botaoCadProfessor = criarBotao("Atualizar Professor");
 		botaoCadProfessor.setOnAction(e -> {
+
 		});
 		Button botaoCadMat = criarBotao("Atualizar Matéria");
 		botaoCadMat.setOnAction(e -> {

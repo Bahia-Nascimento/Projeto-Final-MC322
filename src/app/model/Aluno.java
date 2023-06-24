@@ -10,23 +10,24 @@ public class Aluno extends Pessoa {
     private final String ra;
     private Set<Materia> grade;
     private Set<Turma> turmas;
-    
 
-    public Aluno(CPF cpf, String nome, LocalDate dataNascimento, LocalDate dataCadastro, Curso curso, String ra, Collection<Materia> grade, Collection<Turma> turmas) {
+    public Aluno(CPF cpf, String nome, LocalDate dataNascimento, LocalDate dataCadastro, Curso curso, String ra,
+            Collection<Materia> grade, Collection<Turma> turmas) {
         super(cpf, nome, dataNascimento, dataCadastro);
         this.curso = curso;
         this.ra = ra;
         this.grade = new HashSet<Materia>(grade);
         this.turmas = new HashSet<Turma>(turmas);
     }
+
     public String getCadastro() {
-            return this.ra;
-        }
+        return this.ra;
+    }
 
     public Curso getCurso() {
         return this.curso;
     }
-    
+
     public void setCurso(Curso curso) {
         this.curso = curso;
     }
@@ -38,7 +39,7 @@ public class Aluno extends Pessoa {
     public Set<Materia> getGrade() {
         return this.grade;
     }
-    
+
     public void setGrade(Set<Materia> grade) {
         this.grade = grade;
     }
@@ -46,13 +47,13 @@ public class Aluno extends Pessoa {
     public Set<Turma> getTurmas() {
         return this.turmas;
     }
-    
+
     public void setTurmas(Set<Turma> turmas) {
         this.turmas = turmas;
     }
 
-    public void iniciaGrade(){
-        
+    public void iniciaGrade() {
+
     }
 
     public boolean addTurma(Turma t) {
@@ -62,7 +63,7 @@ public class Aluno extends Pessoa {
         turmas.add(t);
         return true;
     }
-    
+
     public boolean remTurma(String codigo) {
         for (Turma t : turmas) {
             if (t.getCodigo().equals(codigo)) {
@@ -72,18 +73,15 @@ public class Aluno extends Pessoa {
         }
         return false;
     }
-    
 
     @Override
     public String toString() {
         return "cpf: " + getCpf() +
-            ", nome: " + getNome() +
-            ", dataNascimento: " + getDataNascimento() +
-            ", dataCadastro: " + getDataCadastro() +
-            ", ra: " + getRa() +
-            ", curso: " + getCurso();
+                ", nome: " + getNome() +
+                ", dataNascimento: " + getDataNascimento() +
+                ", dataCadastro: " + getDataCadastro() +
+                ", ra: " + getRa() +
+                ", curso: " + getCurso();
     }
 
-
-    
 }
