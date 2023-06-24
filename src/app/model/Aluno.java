@@ -6,13 +6,13 @@ import java.util.HashSet;
 import java.util.Set;
 
 public class Aluno extends Pessoa {
-    private String curso;
+    private Curso curso;
     private final String ra;
     private Set<Materia> grade;
     private Set<Turma> turmas;
     
 
-    public Aluno(CPF cpf, String nome, LocalDate dataNascimento, LocalDate dataCadastro, String curso, String ra, Collection<Materia> grade, Collection<Turma> turmas) {
+    public Aluno(CPF cpf, String nome, LocalDate dataNascimento, LocalDate dataCadastro, Curso curso, String ra, Collection<Materia> grade, Collection<Turma> turmas) {
         super(cpf, nome, dataNascimento, dataCadastro);
         this.curso = curso;
         this.ra = ra;
@@ -23,11 +23,11 @@ public class Aluno extends Pessoa {
             return this.ra;
         }
 
-    public String getCurso() {
+    public Curso getCurso() {
         return this.curso;
     }
     
-    public void setCurso(String curso) {
+    public void setCurso(Curso curso) {
         this.curso = curso;
     }
 
@@ -51,7 +51,7 @@ public class Aluno extends Pessoa {
         this.turmas = turmas;
     }
     
-    public Boolean eliminarMateria(Materia m, int nota) {
+    public boolean eliminarMateria(Materia m, int nota) {
         // Remove materia da grade do aluno se sua nota for maior ou igual a nota minima da materia
 
         if (nota >= m.getNotaMin()) {
@@ -62,7 +62,7 @@ public class Aluno extends Pessoa {
 
     }
 
-    public Boolean addTurma(Turma t) {
+    public boolean addTurma(Turma t) {
         if (turmas.contains(t)) {
             return false;
         }
@@ -70,7 +70,7 @@ public class Aluno extends Pessoa {
         return true;
     }
     
-    public Boolean remTurma(String codigo) {
+    public boolean remTurma(String codigo) {
         for (Turma t : turmas) {
             if (t.getCodigo().equals(codigo)) {
                 turmas.remove(t);

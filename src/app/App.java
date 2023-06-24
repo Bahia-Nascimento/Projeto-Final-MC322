@@ -12,12 +12,13 @@ public class App extends Application {
     public static void main(String[] args) {
         launch(args);
     }
+    public static Scene scene;
 
     @Override
     public void start(Stage primaryStage) throws Exception {
         MenuPrincipal mp = new MenuPrincipal(primaryStage);
         Parent root = mp.getNode();
-        Scene scene = new Scene(root, 400, 400);
+        scene = new Scene(root, 400, 400);
         scene.getStylesheets().setAll("resources/css/main.css");
         primaryStage.setMaximized(true);
         primaryStage.setScene(scene);

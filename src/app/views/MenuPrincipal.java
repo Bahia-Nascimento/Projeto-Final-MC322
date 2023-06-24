@@ -23,6 +23,10 @@ public class MenuPrincipal extends View<BorderPane> {
 
 	public MenuPrincipal(Stage stage) {
 		super(stage);
+		controller = new MenuPrincipalController(this);
+
+
+
 		VBox topo = construirTopo();
 		GridPane centro = construirCentro();
 		HBox base = construirBase();
@@ -32,7 +36,7 @@ public class MenuPrincipal extends View<BorderPane> {
 		bp.setBottom(base);
 		bp.getStylesheets().add("resources/css/menu-principal.css");
 
-		controller = new MenuPrincipalController(this);
+		
 	}
 
 	private static VBox construirTopo() {
@@ -52,22 +56,23 @@ public class MenuPrincipal extends View<BorderPane> {
 		return vb;
 	}
 
-	private static GridPane construirCentro() {
-		Button botaoCadAluno = criarBotao("Cadastrar Aluno");
-		botaoCadAluno.setOnAction(e -> {
-		});
-		Button botaoCadProfessor = criarBotao("Cadastrar Professor");
+	private GridPane construirCentro() {
+		Button botaoCadAluno = criarBotao("Atualizar Aluno");
+		botaoCadAluno.setOnAction(controller::navigateHome);
+		
+		Button botaoCadProfessor = criarBotao("Atualizar Professor");
 		botaoCadProfessor.setOnAction(e -> {
 		});
-		Button botaoCadMat = criarBotao("Cadastrar Matéria");
+		Button botaoCadMat = criarBotao("Atualizar Matéria");
 		botaoCadMat.setOnAction(e -> {
 		});
-		Button botaoCadTurma = criarBotao("Cadastrar Turma");
+		Button botaoCadTurma = criarBotao("Atualizar Turma");
 		botaoCadTurma.setOnAction(e -> {
 		});
 
 		Button botaoVerAlunos = criarBotao("Visualizar Alunos");
 		botaoVerAlunos.setOnAction(e -> {
+
 		});
 		Button botaoVerProfessor = criarBotao("Visualizar Professores");
 		botaoVerProfessor.setOnAction(e -> {

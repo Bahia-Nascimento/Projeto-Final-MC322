@@ -16,9 +16,7 @@ public abstract class Controller<V extends View<?>> {
     }
 
     public void navigateHome(ActionEvent e) {
-        MenuPrincipal mp = new MenuPrincipal(view.getStage());
-        view.getStage().setScene(new Scene(mp.getNode()));
-
+        view.getStage().setScene(App.scene);
     }
 
     public V getView() {
