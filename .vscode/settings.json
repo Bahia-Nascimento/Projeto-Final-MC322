@@ -6,7 +6,7 @@
     "java.project.referencedLibraries": {
         "include": [
             "lib/*.jar",
-            "lib/javafx/windows/*.jar"
+            "lib/javafx/linux/*.jar"
         ],
         "sources": {
             "lib/javafx/linux/javafx.base.jar": "lib/javafx/linux/src/javafx.base",

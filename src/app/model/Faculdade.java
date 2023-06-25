@@ -4,25 +4,81 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import javafx.beans.property.SimpleMapProperty;
+import javafx.collections.FXCollections;
+
+import java.time.LocalDate;
+
 public class Faculdade {
     private String nome;
     private final CNPJ cnpj;
-    private final List<Aluno> listaAlunos;
+    private final SimpleMapProperty<String, Aluno> listaAlunos;
     private final List<Professor> listaProfessores;
     private final Set<Materia> materiaOferecidas;
     private final Set<Turma> turmas;
+    private final HashSet<Materia> gradeCC;
+    private final HashSet<Materia> gradeEC;
     
 
     public Faculdade(String nome, CNPJ cnpj) {
         this.nome = nome;
         this.cnpj = cnpj;
-        this.listaAlunos = new ArrayList<Aluno>();
+        this.listaAlunos = new SimpleMapProperty<String, Aluno>(FXCollections.observableHashMap());
         this.listaProfessores = new ArrayList<Professor>();
         this.materiaOferecidas = new HashSet<Materia>();
-        turmas = new HashSet<>();
+        this.gradeCC = new HashSet<Materia>();
+        this.gradeEC = new HashSet<Materia>();
+        this.turmas = new HashSet<>();
+        lerDados();
     }
 
     public void lerDados() {
+        ArrayList<String[]> temp = CSV.lerProfessores();
+        for (String[] array : temp) {
+            Professor p = new Professor(array[4], new CPF(array[1]), array[0], LocalDate.parse(array[3]), LocalDate.parse(array[4]));
+            addProfessor(p);
+        }
+
+        temp = CSV.lerMateria();
+        for (String[] array : temp) {
+            Materia m;
+            if (array[2].equals("\"\"")) {
+                m = new Materia(array[0], Integer.parseInt(array[1]), new HashSet<Materia>());
+            } else {
+                HashSet<Materia> requisitos = new HashSet<Materia>();
+                for (int i = 2; i < array.length; i++) {
+                    array[i] = array[i].replaceAll("\"", "");
+                    for (Materia mat : materiaOferecidas) {
+                        if (mat.getCodigo().equals(array[i])) {
+                            requisitos.add(mat);
+                            break;
+                        }
+                    }
+                }
+                m = new Materia(array[0], Integer.parseInt(array[1]), requisitos);
+            }
+            addMateria(m);
+        }
+
+        temp = CSV.lerGrade();
+        for (int i = 1; i < temp.get(0).length; i++) {
+            String cod = temp.get(0)[i].replaceAll("\"", "");
+            for (Materia m : materiaOferecidas) {
+                if (cod.equals(m.getCodigo())) {
+                    gradeCC.add(m);
+                    break;
+                }
+            }
+        }
+        for (int i = 1; i < temp.get(1).length; i++) {
+            String cod = temp.get(1)[i].replaceAll("\"", "");
+            for (Materia m : materiaOferecidas) {
+                if (cod.equals(m.getCodigo())) {
+                    gradeEC.add(m);
+                    break;
+                }
+            }
+        }
     }
 
     public String getNome() {
@@ -37,7 +93,7 @@ public class Faculdade {
         return this.cnpj;
     }
 
-    public List<Aluno> getListaAlunos() {
+    public SimpleMapProperty<String, Aluno> getListaAlunos() {
         return this.listaAlunos;
     }
 
@@ -54,19 +110,17 @@ public class Faculdade {
     }
 
     public boolean addAluno(Aluno a) {
-        if (listaAlunos.contains(a)) {
+        if (listaAlunos.containsKey(a.getRa())) {
             return false;
         }
-        listaAlunos.add(a);
+        listaAlunos.put(a.getRa(), a);
         return true;
     }
 
     public boolean remAluno(String ra) {
-        for (Aluno a : listaAlunos) {
-            if (a.getCadastro().equals(ra)) {
-                listaAlunos.remove(a);
-                return true;
-            }
+        if (listaAlunos.containsKey(ra)) {
+            listaAlunos.remove(ra);
+            return true;
         }
         return false;
     }
