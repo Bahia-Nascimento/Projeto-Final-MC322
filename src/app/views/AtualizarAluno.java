@@ -1,5 +1,6 @@
 package app.views;
 
+import app.Utils;
 import app.controllers.AtualizarAlunoController;
 import app.controllers.Controller;
 import app.model.Aluno;
@@ -51,7 +52,7 @@ public class AtualizarAluno extends View<BorderPane> {
 
 		HBox base = new HBox(10);
 		base.setAlignment(Pos.BASELINE_CENTER);
-		
+
 		Button botaoVoltar = Utils.criarBotao("Voltar");
 		botaoVoltar.setOnAction(controller::navigateHome);
 

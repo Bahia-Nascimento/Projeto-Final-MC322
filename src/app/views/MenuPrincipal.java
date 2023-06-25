@@ -14,7 +14,7 @@ import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
-import static app.views.Utils.*;
+import static app.Utils.*;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;

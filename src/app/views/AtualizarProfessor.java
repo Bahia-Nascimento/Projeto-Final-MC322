@@ -1,5 +1,6 @@
 package app.views;
 
+import app.Utils;
 import app.controllers.Controller;
 import app.model.Professor;
 import javafx.scene.control.Label;
