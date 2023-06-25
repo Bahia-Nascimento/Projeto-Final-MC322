@@ -1,6 +1,7 @@
 package app.model;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -15,8 +16,8 @@ public class Faculdade {
     private final List<Professor> listaProfessores;
     private final Set<Materia> materiaOferecidas;
     private final Set<Turma> turmas;
-    private final HashSet<Materia> gradeCC;
-    private final HashSet<Materia> gradeEC;
+    protected final HashSet<Materia> gradeCC;
+    protected final HashSet<Materia> gradeEC;
     
 
     public Faculdade(String nome, CNPJ cnpj) {
@@ -77,6 +78,18 @@ public class Faculdade {
                     break;
                 }
             }
+        }
+
+        temp = CSV.lerAlunos();
+        for (String[] array : temp) {
+            HashSet<Materia> gradeAluno;
+            if (Curso.fromString(array[4]) == Curso.CIENCIA) {
+                gradeAluno = gradeCC;
+            } else {
+                gradeAluno = gradeEC;
+            }
+            Aluno a = new Aluno(new CPF(array[1]), array[0], LocalDate.parse(array[2]), LocalDate.parse(array[3]), Curso.fromString(array[4]), array[5], gradeAluno, Collections.emptyList());
+            addAluno(a);
         }
     }
 
