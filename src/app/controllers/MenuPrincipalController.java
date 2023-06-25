@@ -59,6 +59,7 @@ public class MenuPrincipalController extends Controller<MenuPrincipal> {
 				var aa = new AtualizarAluno(janelaRA, alunoSelecionado);
 				Parent a = aa.getNode();
 				Scene cena = new Scene(a, 500, 500);
+				cena.getStylesheets().setAll("resources/css/main.css");
 				janelaRA.close();
 				boolean maximize = stage.isMaximized();
 				stage.setScene(cena);
@@ -75,6 +76,7 @@ public class MenuPrincipalController extends Controller<MenuPrincipal> {
 		BorderPane.setMargin(botoes, new Insets(0, 0, 20, 0));
 
 		Scene cena = new Scene(painel, 200, 200);
+		cena.getStylesheets().setAll("resources/css/main.css");
 		janelaRA.setScene(cena);
 		janelaRA.show();
 	}
@@ -102,6 +104,7 @@ public class MenuPrincipalController extends Controller<MenuPrincipal> {
 				var aa = new AtualizarProfessor(janelaCadastro, professorSelecionado);
 				Parent a = aa.getNode();
 				Scene cena = new Scene(a, 500, 500);
+				cena.getStylesheets().setAll("resources/css/main.css");
 				janelaCadastro.close();
 				boolean maximize = stage.isMaximized();
 				stage.setScene(cena);
@@ -116,6 +119,7 @@ public class MenuPrincipalController extends Controller<MenuPrincipal> {
 		BorderPane painel = new BorderPane(centro);
 		painel.setBottom(botoes);
 		Scene cena = new Scene(painel, 200, 200);
+		cena.getStylesheets().setAll("resources/css/main.css");
 		janelaCadastro.setScene(cena);
 		janelaCadastro.show();
 	}
@@ -143,6 +147,7 @@ public class MenuPrincipalController extends Controller<MenuPrincipal> {
 				var aa = new AtualizarTurma(janelaCodigo, turmaSelecionada);
 				Parent a = aa.getNode();
 				Scene cena = new Scene(a, 500, 500);
+				cena.getStylesheets().setAll("resources/css/main.css");
 				janelaCodigo.close();
 				boolean maximize = stage.isMaximized();
 				stage.setScene(cena);
@@ -157,6 +162,7 @@ public class MenuPrincipalController extends Controller<MenuPrincipal> {
 		BorderPane painel = new BorderPane(centro);
 		painel.setBottom(botoes);
 		Scene cena = new Scene(painel, 200, 200);
+		cena.getStylesheets().setAll("resources/css/main.css");
 		janelaCodigo.setScene(cena);
 		janelaCodigo.show();
 	}
