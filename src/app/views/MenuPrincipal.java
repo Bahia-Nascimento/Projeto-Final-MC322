@@ -67,16 +67,8 @@ public class MenuPrincipal extends View<BorderPane> {
 		botaoCadAluno.setOnAction(e -> controller.atualizarAluno(e, stage));
 		
 		Button botaoCadProfessor = criarBotao("Atualizar Professor");
-		botaoCadProfessor.setOnAction(e -> {
-
-			DateTimeFormatter formatador = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-			Professor teste_prof = new Professor("658262", new CPF("71031371885"), "Luiz Danilo Souza",
-												LocalDate.parse("09/06/1958", formatador), LocalDate.parse("09/06/1958", formatador));
-			AtualizarProfessor atualizarProfessor = new AtualizarProfessor(stage, teste_prof);
-			Scene scene_prof = new Scene(atualizarProfessor.getNode(), 400, 400);
-			stage.setScene(scene_prof);
-
-		});
+		botaoCadProfessor.setOnAction(e -> controller.atualizarProfessor(e, stage));
+		
 		Button botaoCadMat = criarBotao("Atualizar Matéria");
 		botaoCadMat.setOnAction(e -> {
 
@@ -125,8 +117,8 @@ public class MenuPrincipal extends View<BorderPane> {
 	private static HBox construirBase() {
 		HBox base = new HBox(10,
 				new Label("Créditos:   "),
-				new Text("Breno Nishimoto ([RA aqui])    " +
-						"Gabriel de Carvalho Silva Nascimento ([RA aqui])    " +
+				new Text("Breno Nishimoto (220599)    " +
+						"Gabriel de Carvalho Silva Nascimento (222103)    " +
 						"Gustavo Souza ([RA aqui])    " +
 						"Mateus da Costa e Silva Rios Alves de Andrade (230806)"));
 		base.setAlignment(Pos.BOTTOM_CENTER);

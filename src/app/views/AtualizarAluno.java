@@ -49,7 +49,6 @@ public class AtualizarAluno extends View<BorderPane> {
 
 	@Override
 	public Controller<? extends View<BorderPane>> getController() {
-		// TODO Auto-generated method stub
 		throw new UnsupportedOperationException("Unimplemented method 'getController'");
 	}
 }
