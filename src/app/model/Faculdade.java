@@ -1,4 +1,5 @@
 package app.model;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -14,6 +15,8 @@ public class Faculdade {
     private final List<Professor> listaProfessores;
     private final Set<Materia> materiaOferecidas;
     private final Set<Turma> turmas;
+    private final HashSet<Materia> gradeCC;
+    private final HashSet<Materia> gradeEC;
     
 
     public Faculdade(String nome, CNPJ cnpj) {
@@ -22,10 +25,59 @@ public class Faculdade {
         this.alunos = new SimpleMapProperty<String, Aluno>(FXCollections.observableHashMap());
         this.listaProfessores = new ArrayList<Professor>();
         this.materiaOferecidas = new HashSet<Materia>();
-        turmas = new HashSet<>();
+        this.gradeCC = new HashSet<Materia>();
+        this.gradeEC = new HashSet<Materia>();
+        this.turmas = new HashSet<>();
+        lerDados();
     }
 
     public void lerDados() {
+        ArrayList<String[]> temp = CSV.lerProfessores();
+        for (String[] array : temp) {
+            Professor p = new Professor(array[4], new CPF(array[1]), array[0], LocalDate.parse(array[3]), LocalDate.parse(array[4]));
+            addProfessor(p);
+        }
+
+        temp = CSV.lerMateria();
+        for (String[] array : temp) {
+            Materia m;
+            if (array[2].equals("\"\"")) {
+                m = new Materia(array[0], Integer.parseInt(array[1]), new HashSet<Materia>());
+            } else {
+                HashSet<Materia> requisitos = new HashSet<Materia>();
+                for (int i = 2; i < array.length; i++) {
+                    array[i] = array[i].replaceAll("\"", "");
+                    for (Materia mat : materiaOferecidas) {
+                        if (mat.getCodigo().equals(array[i])) {
+                            requisitos.add(mat);
+                            break;
+                        }
+                    }
+                }
+                m = new Materia(array[0], Integer.parseInt(array[1]), requisitos);
+            }
+            addMateria(m);
+        }
+
+        temp = CSV.lerGrade();
+        for (int i = 1; i < temp.get(0).length; i++) {
+            String cod = temp.get(0)[i].replaceAll("\"", "");
+            for (Materia m : materiaOferecidas) {
+                if (cod.equals(m.getCodigo())) {
+                    gradeCC.add(m);
+                    break;
+                }
+            }
+        }
+        for (int i = 1; i < temp.get(1).length; i++) {
+            String cod = temp.get(1)[i].replaceAll("\"", "");
+            for (Materia m : materiaOferecidas) {
+                if (cod.equals(m.getCodigo())) {
+                    gradeEC.add(m);
+                    break;
+                }
+            }
+        }
     }
 
     public String getNome() {
