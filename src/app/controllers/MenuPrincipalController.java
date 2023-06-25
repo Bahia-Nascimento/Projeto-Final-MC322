@@ -11,6 +11,8 @@ import app.views.AtualizarProfessor;
 import app.views.AtualizarTurma;
 import app.views.MenuPrincipal;
 import javafx.event.ActionEvent;
+import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -48,6 +50,8 @@ public class MenuPrincipalController extends Controller<MenuPrincipal> {
 		centro.getChildren().addAll(l, tf);
 
 		HBox botoes = new HBox(10);
+		botoes.setAlignment(Pos.BASELINE_CENTER);
+
 		Button botaoConfirmar = new Button("Confirmar");
 		botaoConfirmar.setOnAction(e -> {
 			Aluno alunoSelecionado = model.alunosProperty().get(tf.getText());
@@ -68,6 +72,8 @@ public class MenuPrincipalController extends Controller<MenuPrincipal> {
 
 		BorderPane painel = new BorderPane(centro);
 		painel.setBottom(botoes);
+		BorderPane.setMargin(botoes, new Insets(0, 0, 20, 0));
+
 		Scene cena = new Scene(painel, 200, 200);
 		janelaRA.setScene(cena);
 		janelaRA.show();

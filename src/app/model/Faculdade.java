@@ -4,10 +4,13 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import javafx.beans.property.SimpleMapProperty;
+import javafx.collections.FXCollections;
+
 public class Faculdade {
     private String nome;
     private final CNPJ cnpj;
-    private final List<Aluno> listaAlunos;
+    private final SimpleMapProperty<String, Aluno> alunos;
     private final List<Professor> listaProfessores;
     private final Set<Materia> materiaOferecidas;
     private final Set<Turma> turmas;
@@ -16,7 +19,7 @@ public class Faculdade {
     public Faculdade(String nome, CNPJ cnpj) {
         this.nome = nome;
         this.cnpj = cnpj;
-        this.listaAlunos = new ArrayList<Aluno>();
+        this.alunos = new SimpleMapProperty<String, Aluno>(FXCollections.observableHashMap());
         this.listaProfessores = new ArrayList<Professor>();
         this.materiaOferecidas = new HashSet<Materia>();
         turmas = new HashSet<>();
@@ -37,8 +40,8 @@ public class Faculdade {
         return this.cnpj;
     }
 
-    public List<Aluno> getListaAlunos() {
-        return this.listaAlunos;
+    public SimpleMapProperty<String, Aluno> getAlunos() {
+        return alunos;
     }
 
     public List<Professor> getListaProfessores() {
@@ -54,21 +57,14 @@ public class Faculdade {
     }
 
     public boolean addAluno(Aluno a) {
-        if (listaAlunos.contains(a)) {
-            return false;
-        }
-        listaAlunos.add(a);
-        return true;
+        Aluno b = alunos.putIfAbsent(a.getRa(), a);
+        return a.equals(b);
+
     }
 
     public boolean remAluno(String ra) {
-        for (Aluno a : listaAlunos) {
-            if (a.getCadastro().equals(ra)) {
-                listaAlunos.remove(a);
-                return true;
-            }
-        }
-        return false;
+        Aluno a = alunos.remove(ra);
+        return a != null;
     }
 
     public boolean addProfessor(Professor p) {
