@@ -9,8 +9,6 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
-import javafx.scene.layout.VBox;
-import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
@@ -33,9 +31,7 @@ public class MenuPrincipal extends View<BorderPane> {
 		super(stage);
 		controller = new MenuPrincipalController(this);
 
-
-
-		VBox topo = construirTopo();
+		HBox topo = construirTopo();
 		GridPane centro = construirCentro();
 		HBox base = construirBase();
 
@@ -45,21 +41,28 @@ public class MenuPrincipal extends View<BorderPane> {
 		bp.getStylesheets().add("resources/css/menu-principal.css");
 	}
 
-	private static VBox construirTopo() {
+	private static HBox construirTopo() {
 
-		Image athyrson;
-		athyrson = new Image("resources/img/athyrson.jpg");
+		Image logo_unicamp;
+		logo_unicamp = new Image("resources/img/logo-unicamp-name-line-blk-red-0160.png");
 		ImageView icone = new ImageView();
-		icone.setImage(athyrson);
+		icone.setImage(logo_unicamp);
 		icone.setPreserveRatio(true);
-		icone.setFitWidth(400);
+		icone.setFitWidth(200);
 		icone.setCache(true);
-		Text nome = new Text("iComp");
-		nome.setFont(new Font(40));
+		Image logo_icomp;
+		logo_icomp = new Image("resources/img/iComp_logo.png");
+		ImageView icone_2 = new ImageView();
+		icone_2.setImage(logo_icomp);
+		icone_2.setPreserveRatio(true);
+		icone_2.setFitWidth(300);
+		icone_2.setCache(true);
 
-		VBox vb = new VBox(10, icone, new Text("placeholder para o logo."), nome);
-		vb.setAlignment(Pos.CENTER);
-		return vb;
+		HBox hb = new HBox(10, icone, new Text("                                                    "), icone_2);
+		hb.setAlignment(Pos.CENTER);
+		hb.setTranslateX(0);
+		hb.setTranslateY(100);
+		return hb;
 	}
 
 	private GridPane construirCentro() {
@@ -69,21 +72,12 @@ public class MenuPrincipal extends View<BorderPane> {
 		Button botaoCadProfessor = criarBotao("Atualizar Professor");
 		botaoCadProfessor.setOnAction(e -> controller.atualizarProfessor(e, stage));
 		
-		Button botaoCadMat = criarBotao("Atualizar Matéria");
-		botaoCadMat.setOnAction(e -> {
-
-			Materia teste_mat = new Materia("MC102", 6, null);
-			AtualizarMateria atualizarMateria = new AtualizarMateria(stage, teste_mat);
-			Scene scene_mat = new Scene(atualizarMateria.getNode(), 400, 400);
-			stage.setScene(scene_mat);
-
-		});
 		Button botaoCadTurma = criarBotao("Atualizar Turma");
 		botaoCadTurma.setOnAction(e -> {
 			
 			DateTimeFormatter formatador = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 			Professor teste_prof = new Professor("658262", new CPF("71031371885"), "Luiz Danilo Souza",
-												LocalDate.parse("09/06/1958", formatador), LocalDate.parse("09/06/1958", formatador));
+			LocalDate.parse("09/06/1958", formatador), LocalDate.parse("09/06/1958", formatador));
 			Materia teste_mat = new Materia("MC102", 6, null);
 			Turma teste_turma = new Turma(teste_mat,"A" ,teste_prof);
 			AtualizarTurma atualizarTurma = new AtualizarTurma(stage, teste_turma);
@@ -106,18 +100,37 @@ public class MenuPrincipal extends View<BorderPane> {
 		botaoVerTurma.setOnAction(e -> {
 		});
 
+		Button botaoDiploma = criarBotao("Solicitar Diploma");
+		botaoDiploma.setOnAction(e -> {
+	
+			Materia teste_mat = new Materia("MC102", 6, null);
+			AtualizarMateria atualizarMateria = new AtualizarMateria(stage, teste_mat);
+			Scene scene_mat = new Scene(atualizarMateria.getNode(), 400, 400);
+			stage.setScene(scene_mat);
+	
+		});
+
+		Button botaoSair = criarBotao("Sair");
+		botaoSair.setOnAction(e -> {
+			stage.close();
+		});
+
 		GridPane centro = new GridPane();
 		centro.setAlignment(Pos.CENTER);
 		centro.setId("centro");
-		centro.addRow(0, botaoCadAluno, botaoCadProfessor, botaoCadMat, botaoCadTurma);
+		centro.addRow(0, botaoCadAluno, botaoCadProfessor, botaoCadTurma);
 		centro.addRow(1, botaoVerAlunos, botaoVerProfessor, botaoVerMateria, botaoVerTurma);
+		centro.addRow(2, botaoDiploma);
+		centro.addRow(4, botaoSair);
+		centro.setVgap(30);
+      	centro.setHgap(30);
 		return centro;
 	}
-
+	
 	private static HBox construirBase() {
 		HBox base = new HBox(10,
 				new Label("Créditos:   "),
-				new Text("Breno Nishimoto (220599)    " +
+				new Text("Breno Shigeki Guimarães Nishimoto (220599)    " +
 						"Gabriel de Carvalho Silva Nascimento (222103)    " +
 						"Gustavo Souza ([RA aqui])    " +
 						"Mateus da Costa e Silva Rios Alves de Andrade (230806)"));
