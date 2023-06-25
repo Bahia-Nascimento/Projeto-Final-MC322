@@ -7,9 +7,9 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 public class CSV {
-    public ArrayList<String[]> lerAlunos() {
+    public static ArrayList<String[]> lerAlunos() {
         ArrayList<String[]> listaAlunos = new ArrayList<String[]>();
-        String separador =",";
+        String separador = ",";
         try{
             File file = new File("lib/dados/Alunos.csv");
             FileReader leitor_arquivo = new FileReader(file);
@@ -29,7 +29,7 @@ public class CSV {
         return null;
     }
 
-     public ArrayList<String[]> lerMateria() {
+     public static ArrayList<String[]> lerMateria() {
         ArrayList<String[]> listaMateria = new ArrayList<String[]>();
         String separador =",";
         try{
@@ -51,7 +51,7 @@ public class CSV {
         return null;
     }
 
-    public ArrayList<String[]> lerProfessores() {
+    public static ArrayList<String[]> lerProfessores() {
         ArrayList<String[]> listaProfessores = new ArrayList<String[]>();
         String separador =",";
         try{
@@ -73,7 +73,7 @@ public class CSV {
         return null;
     }
 
-    public ArrayList<String[]> lerGrade() {
+    public static ArrayList<String[]> lerGrade() {
         ArrayList<String[]> listaGrade = new ArrayList<String[]>();
         String separador =",";
         try{
