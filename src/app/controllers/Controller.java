@@ -8,7 +8,7 @@ public abstract class Controller<V extends View<?>> {
 
     protected V view;
 
-    Controller(V view) {
+    public Controller(V view) {
         this.view = view;
     }
 
