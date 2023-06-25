@@ -20,8 +20,6 @@ public class AlunosModel {
 	private AlunosModel() {
 
 		alunos.bindContentBidirectional(Faculdade.getIC().getAlunos());
-		System.out.println(Faculdade.getIC().getAlunos());
-		System.out.println(alunos.getValue());
 	}
 
 	public MapProperty<String, Aluno> alunosProperty() {

@@ -52,10 +52,6 @@ public class Aluno extends Pessoa {
         this.turmas = turmas;
     }
 
-    public void iniciaGrade() {
-
-    }
-
     public boolean addTurma(Turma t) {
         if (turmas.contains(t)) {
             return false;

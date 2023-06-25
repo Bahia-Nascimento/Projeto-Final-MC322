@@ -2,9 +2,8 @@ package app.model;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
 
 import app.Utils;
 import javafx.beans.property.SimpleMapProperty;
@@ -14,12 +13,6 @@ public class Faculdade {
     private String nome;
     private final CNPJ cnpj;
     private final SimpleMapProperty<String, Aluno> alunos;
-    private final List<Professor> listaProfessores;
-    private final Set<Materia> materiaOferecidas;
-    private final Set<Turma> turmas;
-    private final HashSet<Materia> gradeCC;
-    private final HashSet<Materia> gradeEC;
-
     private static Faculdade ic;
 
     public static Faculdade getIC() {
@@ -29,15 +22,21 @@ public class Faculdade {
         return ic;
     }
 
+    private final SimpleMapProperty<String, Professor> professores;
+    private final SimpleMapProperty<String, Materia> materias;
+    private final SimpleMapProperty<String, Turma> turmas;
+    protected final HashSet<Materia> gradeCC;
+    protected final HashSet<Materia> gradeEC;
+
     public Faculdade(String nome, CNPJ cnpj) {
         this.nome = nome;
         this.cnpj = cnpj;
         this.alunos = new SimpleMapProperty<String, Aluno>(FXCollections.observableHashMap());
-        this.listaProfessores = new ArrayList<Professor>();
-        this.materiaOferecidas = new HashSet<Materia>();
+        this.professores = new SimpleMapProperty<String, Professor>(FXCollections.observableHashMap());
+        this.materias = new SimpleMapProperty<String, Materia>(FXCollections.observableHashMap());
+        this.turmas = new SimpleMapProperty<String, Turma>(FXCollections.observableHashMap());
         this.gradeCC = new HashSet<Materia>();
         this.gradeEC = new HashSet<Materia>();
-        this.turmas = new HashSet<>();
         lerDados();
     }
 
@@ -63,11 +62,8 @@ public class Faculdade {
                 HashSet<Materia> requisitos = new HashSet<Materia>();
                 for (int i = 2; i < array.length; i++) {
                     array[i] = array[i].replaceAll("\"", "");
-                    for (Materia mat : materiaOferecidas) {
-                        if (mat.getCodigo().equals(array[i])) {
-                            requisitos.add(mat);
-                            break;
-                        }
+                    if (materias.containsKey(array[i])) {
+                        requisitos.add(materias.get(array[i]));
                     }
                 }
                 m = new Materia(array[0], Integer.parseInt(array[1]), requisitos);
@@ -80,23 +76,29 @@ public class Faculdade {
         System.out.println(temp.size());
         for (int i = 1; i < temp.get(0).length; i++) {
             String cod = temp.get(0)[i].replaceAll("\"", "");
-            for (Materia m : materiaOferecidas) {
-                if (cod.equals(m.getCodigo())) {
-                    gradeCC.add(m);
-                    break;
-                }
+            if (materias.containsKey(cod)) {
+                gradeCC.add(materias.get(cod));
             }
         }
         for (int i = 1; i < temp.get(1).length; i++) {
             String cod = temp.get(1)[i].replaceAll("\"", "");
-            for (Materia m : materiaOferecidas) {
-                if (cod.equals(m.getCodigo())) {
-                    gradeEC.add(m);
-                    break;
-                }
+            if (materias.containsKey(cod)) {
+                gradeEC.add(materias.get(cod));
             }
         }
         System.out.println("Leu grades.");
+
+        temp = CSV.lerAlunos();
+        for (String[] array : temp) {
+            HashSet<Materia> gradeAluno;
+            if (Curso.fromString(array[4]) == Curso.CIENCIA) {
+                gradeAluno = gradeCC;
+            } else {
+                gradeAluno = gradeEC;
+            }
+            Aluno a = new Aluno(new CPF(array[1]), array[0], LocalDate.parse(array[2], Utils.formatadorPadrao), LocalDate.parse(array[3], Utils.formatadorPadrao), Curso.fromString(array[4]), array[5], gradeAluno, Collections.emptyList());
+            addAluno(a);
+        }
     }
 
     public String getNome() {
@@ -115,15 +117,15 @@ public class Faculdade {
         return alunos;
     }
 
-    public List<Professor> getListaProfessores() {
-        return this.listaProfessores;
+    public SimpleMapProperty<String, Professor> getprofessores() {
+        return this.professores;
     }
 
-    public Set<Materia> getMateriaOferecidas() {
-        return this.materiaOferecidas;
+    public SimpleMapProperty<String, Materia> getmaterias() {
+        return this.materias;
     }
 
-    public Set<Turma> getTurmas() {
+    public SimpleMapProperty<String, Turma> getTurmas() {
         return turmas;
     }
 
@@ -139,25 +141,23 @@ public class Faculdade {
     }
 
     public boolean addProfessor(Professor p) {
-        if (listaProfessores.contains(p)) {
+        if (professores.containsKey(p.getCadastro())) {
             return false;
         }
-        listaProfessores.add(p);
+        professores.put(p.getCadastro(), p);
         return true;
     }
 
     public boolean remProfessor(String cadastro) {
-        for (Professor p : listaProfessores) {
-            if (p.getCadastro().equals(cadastro)) {
-                listaProfessores.remove(p);
-                return true;
-            }
+        if (professores.containsKey(cadastro)) {
+            professores.remove(cadastro);
+            return true;
         }
         return false;
     }
 
-    public boolean addMateria(Materia m) {
-        return materiaOferecidas.add(m);
+    public void addMateria(Materia m) {
+        materias.put(m.getCodigo(), m);
     }
 
     @Override
