@@ -115,7 +115,7 @@ public class Faculdade {
     }
 
     public void gravarDados() {
-
+        CSV.gravarCompletas(alunos.values());
     }
 
     public String getNome() {

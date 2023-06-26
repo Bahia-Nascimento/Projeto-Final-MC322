@@ -2,7 +2,6 @@ package app.model;
 
 import java.time.LocalDate;
 import java.util.HashSet;
-import java.util.Set;
 
 import javafx.beans.property.ReadOnlySetProperty;
 import javafx.beans.property.SimpleSetProperty;
