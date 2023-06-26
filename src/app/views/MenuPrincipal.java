@@ -116,10 +116,9 @@ public class MenuPrincipal extends View<BorderPane> {
 		GridPane centro = new GridPane();
 		centro.setAlignment(Pos.CENTER);
 		centro.setId("centro");
-		centro.addRow(0, botaoCadAluno, botaoCadProfessor, botaoCadTurma);
+		centro.addRow(0, botaoCadAluno, botaoCadProfessor, botaoCadTurma, botaoDiploma);
 		centro.addRow(1, botaoVerAlunos, botaoVerProfessor, botaoVerMateria, botaoVerTurma);
-		centro.addRow(2, botaoDiploma);
-		centro.addRow(4, botaoSair);
+		centro.addRow(3, botaoSair);
 		centro.setVgap(30);
       	centro.setHgap(30);
 		return centro;

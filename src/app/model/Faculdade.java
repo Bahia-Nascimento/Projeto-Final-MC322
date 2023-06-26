@@ -8,6 +8,7 @@ import java.util.HashSet;
 import app.Utils;
 import javafx.beans.property.SimpleMapProperty;
 import javafx.collections.FXCollections;
+import javafx.collections.ObservableMap;
 
 public class Faculdade {
     private String nome;
@@ -120,20 +121,36 @@ public class Faculdade {
         return this.cnpj;
     }
 
-    public SimpleMapProperty<String, Aluno> getAlunos() {
+    public SimpleMapProperty<String, Aluno> alunosProperty() {
         return alunos;
     }
 
-    public SimpleMapProperty<String, Professor> getprofessores() {
-        return this.professores;
+    public ObservableMap<String, Aluno> getAlunos() {
+        return alunos.getValue();
     }
 
-    public SimpleMapProperty<String, Materia> getmaterias() {
-        return this.materias;
+    public SimpleMapProperty<String, Professor> professoresProperty() {
+        return professores;
     }
 
-    public SimpleMapProperty<String, Turma> getTurmas() {
+    public ObservableMap<String, Professor> getProfessores() {
+        return this.professores.getValue();
+    }
+
+    public SimpleMapProperty<String, Materia> materiasProperty() {
+        return materias;
+    }
+
+    public ObservableMap<String, Materia> getmaterias() {
+        return this.materias.getValue();
+    }
+
+    public SimpleMapProperty<String, Turma> turmasProperty() {
         return turmas;
+    }
+
+    public ObservableMap<String, Turma> getTurmas() {
+        return turmas.getValue();
     }
 
     public boolean addAluno(Aluno a) {

@@ -20,12 +20,7 @@ public class ProfessorModel {
 
 	private ProfessorModel() {
 		professor.set(FXCollections.observableHashMap());
-		professor.getValue().put("658262", new Professor(
-				"658262",
-                new CPF("71031371885"),
-				"Luiz Danilo Souza",
-				LocalDate.of(2000, 4, 12),
-				LocalDate.of(2000, 4, 5)));
+		professor.bindContentBidirectional(Faculdade.getIC().professoresProperty());
 	}
 
 	public MapProperty<String, Professor> professorProperty() {
