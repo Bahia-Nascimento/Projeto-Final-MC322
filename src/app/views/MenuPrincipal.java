@@ -91,8 +91,7 @@ public class MenuPrincipal extends View<BorderPane> {
 		Button botaoVerProfessor = criarBotao("Visualizar Professores");
 		botaoVerProfessor.setOnAction(controller::visualizarProfessor);
 		Button botaoVerMateria = criarBotao("Visualizar Matérias");
-		botaoVerMateria.setOnAction(e -> {
-		});
+		botaoVerMateria.setOnAction(controller::visualizarMateria);
 		Button botaoVerTurma = criarBotao("Visualizar Turma");
 		botaoVerTurma.setOnAction(e -> {
 		});
@@ -117,7 +116,7 @@ public class MenuPrincipal extends View<BorderPane> {
 		centro.setId("centro");
 		centro.addRow(0, botaoCadAluno, botaoCadProfessor, botaoCadTurma, botaoDiploma);
 		centro.addRow(1, botaoVerAlunos, botaoVerProfessor, botaoVerMateria, botaoVerTurma);
-		centro.addRow(3, botaoSair);
+		centro.addRow(4, botaoSair);
 		centro.setVgap(30);
       	centro.setHgap(30);
 		return centro;
@@ -128,7 +127,7 @@ public class MenuPrincipal extends View<BorderPane> {
 				new Label("Créditos:   "),
 				new Text("Breno Shigeki Guimarães Nishimoto (220599)    " +
 						"Gabriel de Carvalho Silva Nascimento (222103)    " +
-						"Gustavo Souza ([RA aqui])    " +
+						"Gustavo Souza (171425)    " +
 						"Mateus da Costa e Silva Rios Alves de Andrade (230806)"));
 		base.setAlignment(Pos.BOTTOM_CENTER);
 		return base;

@@ -1,7 +1,5 @@
 package app.model;
 
-import java.time.LocalDate;
-
 import javafx.beans.property.MapProperty;
 import javafx.beans.property.SimpleMapProperty;
 import javafx.collections.FXCollections;

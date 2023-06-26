@@ -1,21 +1,28 @@
 package app.model;
 import java.util.HashSet;
+import java.util.Set;
 
 public class Materia {
     private final String codigo;
     private int count;
     private int creditos;
     private HashSet<Materia> requisitos;
+    private Set<Turma> turmas;
 
     public Materia(String codigo, int creditos,  HashSet<Materia> requisitos) {
         this.codigo = codigo;
         this.creditos = creditos;
         this.requisitos = requisitos;
         this.count = 0;
+        this.turmas = new HashSet<Turma>();
     }
 
     public String getCodigo() {
         return this.codigo;
+    }
+
+    public Set<Turma> getTurmas() {
+        return this.turmas;
     }
 
     public int getCount() {

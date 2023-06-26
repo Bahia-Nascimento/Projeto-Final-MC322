@@ -3,6 +3,7 @@ package app.controllers;
 import app.App;
 import app.model.Aluno;
 import app.model.AlunosModel;
+import app.model.MateriaModel;
 import app.model.Professor;
 import app.model.ProfessorModel;
 import app.model.Turma;
@@ -12,6 +13,7 @@ import app.views.AtualizarProfessor;
 import app.views.AtualizarTurma;
 import app.views.MenuPrincipal;
 import app.views.VisualizarAluno;
+import app.views.VisualizarMateria;
 import app.views.VisualizarProfessor;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
@@ -30,6 +32,7 @@ public class MenuPrincipalController extends Controller<MenuPrincipal> {
 	private AlunosModel model_a;
 	private ProfessorModel model_p;
 	private TurmaModel model_t;
+	private MateriaModel model_m;
 
 	public MenuPrincipalController(MenuPrincipal view) {
 		super(view);
@@ -184,6 +187,15 @@ public class MenuPrincipalController extends Controller<MenuPrincipal> {
 		var vp = new VisualizarProfessor(view.getStage(),
 				FXCollections.observableArrayList(model_p.professorProperty().values()));
 		Parent root = vp.getNode();
+		Scene cena = new Scene(root, App.scene.getWidth(), App.scene.getHeight());
+        cena.getStylesheets().setAll("resources/css/main.css");
+		view.getStage().setScene(cena);
+	}
+
+	public void visualizarMateria(ActionEvent _e) {
+		var vm = new VisualizarMateria(view.getStage(),
+				FXCollections.observableArrayList(model_m.materiaProperty().values()));
+		Parent root = vm.getNode();
 		Scene cena = new Scene(root, App.scene.getWidth(), App.scene.getHeight());
         cena.getStylesheets().setAll("resources/css/main.css");
 		view.getStage().setScene(cena);
