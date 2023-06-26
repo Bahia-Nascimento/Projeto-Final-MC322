@@ -147,7 +147,7 @@ public class CSV {
                     continue;
                 }
 
-                String linha = a.getRa() + "," + a.getCurso().nomeCompleto() + ",\"";
+                String linha = a.getRa() + "," + a.getCurso().nomeCurto() + ",\"";
                 int tam = completas.size();
                 int i = 0;
                 for (Materia m : completas) {
@@ -155,11 +155,11 @@ public class CSV {
                     if (i != tam - 1) linha += ",";
                     i++;
                 }
-                linha += "\"";
+                linha += "\"\n";
 
                 w.write(linha);
-                w.close();
             }
+            w.close();
             return true;
         } catch (IOException e) {
             return false;
