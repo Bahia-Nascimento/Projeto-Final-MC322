@@ -53,13 +53,14 @@ public class AtualizarAluno extends View<BorderPane> {
 		centro.setHgap(10);
 		centro.setVgap(5);
 
-		HBox base = new HBox(10);
-		base.setAlignment(Pos.BASELINE_CENTER);
 
 		Button botaoVoltar = Utils.criarBotao("Voltar");
 		botaoVoltar.setOnAction(controller::navigateHome);
+		HBox base = new HBox(10, botaoVoltar);
+		base.setAlignment(Pos.BASELINE_CENTER);
 
 		principal = new BorderPane(centro);
+		principal.setBottom(base);
 	}
 
 	@Override

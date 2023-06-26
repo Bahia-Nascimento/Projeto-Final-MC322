@@ -3,13 +3,9 @@ package app.views;
 import java.time.LocalDate;
 
 import app.Utils;
-import app.controllers.Controller;
 import app.controllers.VisualizarAlunoController;
 import app.model.Aluno;
-import app.model.CPF;
-import app.model.Curso;
 import app.model.Materia;
-import javafx.beans.Observable;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.value.ChangeListener;
 import javafx.collections.FXCollections;
@@ -25,15 +21,9 @@ import javafx.scene.control.ListView;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.image.ImageView;
-import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.Border;
 import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.BorderStroke;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
-import javafx.scene.paint.Color;
-import javafx.scene.paint.Paint;
 import javafx.stage.Stage;
 
 public class VisualizarAluno extends View<BorderPane> {
