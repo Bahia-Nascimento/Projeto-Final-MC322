@@ -27,19 +27,7 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 public class VisualizarAluno extends View<BorderPane> {
-	public class MateriaListCell extends ListCell<Materia> {
-
-		@Override
-		protected void updateItem(Materia item, boolean empty) {
-			super.updateItem(item, empty);
-			if (item != null) {
-				setText(item.getCodigo());
-				setContentDisplay(ContentDisplay.TOP);
-			}
-		}
-
-	}
-
+	
 	private BorderPane principal;
 	private VisualizarAlunoController controller;
 
