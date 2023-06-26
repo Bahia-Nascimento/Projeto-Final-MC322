@@ -131,19 +131,9 @@ public class AtualizarAluno extends View<BorderPane> {
 
 		Button botaoVoltar = new Button("Voltar");
 		botaoVoltar.setMinHeight(20);
-		botaoVoltar.setOnAction(e -> {
-			System.out.println("seu");
-			System.out.println(App.scene);
-			System.out.println(principal.getScene());
-			App.scene = new Scene(new MenuPrincipal(stage).getNode(), 1000, 700);
-			stage.setScene(App.scene);
-			stage.show();
-			e.consume();
-		});
-		Button botaoVoltar2 = Utils.criarBotao("Voltar");
-		botaoVoltar2.setOnAction(controller::navigateHome);
+		botaoVoltar.setOnAction(controller::navigateHome);
 		HBox base = new HBox(10);
-		base.getChildren().addAll(botaoVoltar, botaoVoltar2);
+		base.getChildren().addAll(botaoVoltar);
 		base.setMinHeight(15);
 		botaoVoltar.setPrefWidth(100);
 		HBox.setMargin(botaoVoltar, new Insets(10, 0, 50, 0));
