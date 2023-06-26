@@ -3,6 +3,7 @@ import java.util.HashSet;
 
 public class Materia {
     private final String codigo;
+    private int count;
     private int creditos;
     private HashSet<Materia> requisitos;
 
@@ -10,10 +11,19 @@ public class Materia {
         this.codigo = codigo;
         this.creditos = creditos;
         this.requisitos = requisitos;
+        this.count = 0;
     }
 
     public String getCodigo() {
         return this.codigo;
+    }
+
+    public int getCount() {
+        return count;
+    }
+
+    public void countUp() {
+        this.count = this.count++;
     }
 
     public void setCreditos(int creditos){

@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 public class Turma {
     private final Materia materia;
+    private final String codigo;
     private String horario;
     private ArrayList<Aluno> listaAlunos;
     private Professor professor;
@@ -11,6 +12,8 @@ public class Turma {
 
     public Turma(Materia materia, String horario, Professor professor) {
         this.materia = materia;
+        this.codigo = materia.getCodigo() + " " + materia.getCount();
+        materia.countUp();
         this.horario = horario;
         this.listaAlunos = new ArrayList<Aluno>();
         this.professor = professor;
@@ -19,6 +22,10 @@ public class Turma {
 
     public Materia getMateria() {
         return this.materia;
+    }
+
+    public String getCodigo() {
+        return this.codigo;
     }
 
     public void setHorario(String horario){
