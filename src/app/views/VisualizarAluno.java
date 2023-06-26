@@ -82,17 +82,19 @@ public class VisualizarAluno extends View<BorderPane> {
 			listaCompletas.setItems(lista);
 		});
 
-		VBox centro = new VBox(10, tabela, new Label("Matéria concluídas."), listaCompletas);
+		VBox centro = new VBox(10, tabela, new Label("Matérias concluídas"), listaCompletas);
 		centro.setAlignment(Pos.CENTER);
 		VBox.setMargin(tabela, new Insets(50));
 		VBox.setMargin(listaCompletas, new Insets(50));
 
 		Button botaoVoltar = new Button("Voltar");
-		botaoVoltar.setMinHeight(14);
+		botaoVoltar.setMinHeight(20);
 		botaoVoltar.setOnAction(controller::navigateHome);
 		HBox base = new HBox(10);
 		base.getChildren().addAll(botaoVoltar);
 		base.setMinHeight(15);
+		botaoVoltar.setPrefWidth(100);;
+		HBox.setMargin(botaoVoltar, new Insets(10, 0, 50, 0));
 
 		principal = new BorderPane(centro);
 		principal.setBottom(base);

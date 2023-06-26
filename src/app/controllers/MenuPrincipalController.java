@@ -78,7 +78,7 @@ public class MenuPrincipalController extends Controller<MenuPrincipal> {
 		painel.setBottom(botoes);
 		BorderPane.setMargin(botoes, new Insets(0, 0, 20, 0));
 
-		Scene cena = new Scene(painel, 200, 200);
+		Scene cena = new Scene(painel, 350, 100);
 		cena.getStylesheets().setAll("resources/css/main.css");
 		janelaRA.setScene(cena);
 		janelaRA.show();
@@ -121,7 +121,7 @@ public class MenuPrincipalController extends Controller<MenuPrincipal> {
 
 		BorderPane painel = new BorderPane(centro);
 		painel.setBottom(botoes);
-		Scene cena = new Scene(painel, 200, 200);
+		Scene cena = new Scene(painel, 350, 100);
 		cena.getStylesheets().setAll("resources/css/main.css");
 		janelaCadastro.setScene(cena);
 		janelaCadastro.show();
@@ -164,7 +164,7 @@ public class MenuPrincipalController extends Controller<MenuPrincipal> {
 
 		BorderPane painel = new BorderPane(centro);
 		painel.setBottom(botoes);
-		Scene cena = new Scene(painel, 200, 200);
+		Scene cena = new Scene(painel, 350, 100);
 		cena.getStylesheets().setAll("resources/css/main.css");
 		janelaCodigo.setScene(cena);
 		janelaCodigo.show();
