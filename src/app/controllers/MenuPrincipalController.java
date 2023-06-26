@@ -3,7 +3,6 @@ package app.controllers;
 import app.App;
 import app.model.Aluno;
 import app.model.AlunosModel;
-import app.model.Materia;
 import app.model.MateriaModel;
 import app.model.Professor;
 import app.model.ProfessorModel;

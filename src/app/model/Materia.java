@@ -2,6 +2,8 @@ package app.model;
 import java.util.HashSet;
 import java.util.Set;
 
+import javafx.beans.property.SimpleStringProperty;
+
 public class Materia {
     private final String codigo;
     private int count;
@@ -65,6 +67,17 @@ public class Materia {
             }
         }
         return false;
+    }
+
+    public SimpleStringProperty reqToString() {
+        String s = "";
+        for (Materia m : requisitos) {
+            s += " " + m.getCodigo();
+        }
+        if (s.equals("")) {
+            s = " Sem requisitos";
+        }
+        return new SimpleStringProperty(s);
     }
 
     @Override

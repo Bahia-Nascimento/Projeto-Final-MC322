@@ -65,13 +65,15 @@ public class VisualizarMateria extends View<BorderPane> {
 
 	private TableView<Materia> construirTabela() {
 		TableColumn<Materia, String> colunaCodigo = new TableColumn<>("Código");
-		colunaCodigo.setCellValueFactory(new PropertyValueFactory<>("Cadastro"));
+		colunaCodigo.setCellValueFactory(new PropertyValueFactory<>("codigo"));
 
 		TableColumn<Materia, String> colunaCreditos = new TableColumn<>("Créditos");
 		colunaCreditos.setCellValueFactory(new PropertyValueFactory<>("creditos"));
 
 		TableColumn<Materia, String> colunaRequisitos = new TableColumn<>("Requisitos");
-		colunaRequisitos.setCellValueFactory(new PropertyValueFactory<>("requisitos"));
+		colunaRequisitos.setCellValueFactory(cdf->{
+			return cdf.getValue().reqToString();
+		});
 
 
 
