@@ -4,6 +4,7 @@ import java.time.LocalDate;
 
 import app.Utils;
 import app.controllers.Controller;
+import app.controllers.VisualizarAlunoController;
 import app.model.Aluno;
 import app.model.CPF;
 import app.model.Curso;
@@ -11,14 +12,18 @@ import javafx.beans.Observable;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.value.ChangeListener;
 import javafx.collections.ObservableList;
+import javafx.geometry.Insets;
+import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 
 public class VisualizarAluno extends View<BorderPane> {
 	private BorderPane principal;
+	private VisualizarAlunoController controller;
 
 	private static SimpleStringProperty getDateStringProperty(LocalDate data) {
 		return new SimpleStringProperty(data.format(Utils.formatadorPadrao));
@@ -35,9 +40,18 @@ public class VisualizarAluno extends View<BorderPane> {
 	public VisualizarAluno(Stage stage, ObservableList<Aluno> alunos) {
 		super(stage);
 		this.alunos = alunos;
+		controller = new VisualizarAlunoController(this);
 
 		TableView<Aluno> tabela = construirTabela();
+
+		Button botaoVoltar = Utils.criarBotao("Voltar");
+		botaoVoltar.setOnAction(controller::navigateHome);
+		HBox base = new HBox(10);
+		base.getChildren().addAll(botaoVoltar);
+
 		principal = new BorderPane(tabela);
+		principal.setBottom(base);
+		principal.setMargin(tabela, new Insets(200));
 	}
 
 	private TableView<Aluno> construirTabela() {
@@ -82,9 +96,8 @@ public class VisualizarAluno extends View<BorderPane> {
 	}
 
 	@Override
-	public Controller<? extends View<BorderPane>> getController() {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Unimplemented method 'getController'");
+	public VisualizarAlunoController getController() {
+		return controller;
 	}
 
 }
