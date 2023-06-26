@@ -1,16 +1,27 @@
 package app.model;
 
+import javafx.beans.property.ReadOnlyProperty;
+import javafx.beans.property.SimpleStringProperty;
+
 /**
  * Representa um CPF válido.
  */
-public record CPF(String valor) implements ID<String> {
+public class CPF implements ID<String> {
     /**
      * @param valor valor
      * @throws IDInvalidoException quando valor é inválido.
      */
-    public CPF {
-        if (!Validacao.validaCPF(valor)) {
-            throw new IDInvalidoException();
-        }
+    private final SimpleStringProperty valor;
+    public CPF(String string) {
+        valor = new SimpleStringProperty(string);
+    }
+
+    @Override
+    public SimpleStringProperty valor() {
+        return valor;
+    }
+
+    public SimpleStringProperty valorProperty() {
+        return valor;
     }
 }

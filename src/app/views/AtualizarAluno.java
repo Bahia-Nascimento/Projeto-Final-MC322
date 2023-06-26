@@ -42,7 +42,7 @@ public class AtualizarAluno extends View<BorderPane> {
 		centro.addColumn(1, 
 				new Text(aluno.getRa()),
 				new Text(aluno.getNome()),
-				new Text(aluno.getCpf().valor()),
+				new Text(aluno.getCpf().getValor()),
 				new Text(aluno.getDataNascimento().format(Utils.formatadorPadrao)),
 				new Text(aluno.getDataCadastro().format(Utils.formatadorPadrao)),
 				cursoSelecionado);

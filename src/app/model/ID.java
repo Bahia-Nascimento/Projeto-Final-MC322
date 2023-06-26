@@ -1,5 +1,10 @@
 package app.model;
 
+import javafx.beans.property.ReadOnlyProperty;
+
 public interface ID<T> {
-    T valor();
+    ReadOnlyProperty<T> valor();
+    default T getValor() {
+        return valor().getValue();
+    }
 }

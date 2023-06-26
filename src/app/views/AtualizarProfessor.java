@@ -26,7 +26,7 @@ public class AtualizarProfessor extends View<BorderPane> {
 		centro.addColumn(1, 
 				new Text(professor.getCadastro()),
 				new Text(professor.getNome()),
-				new Text(professor.getCpf().valor()),
+				new Text(professor.getCpf().getValor()),
 				new Text(professor.getDataNascimento().format(Utils.formatadorPadrao)),
 				new Text(professor.getDataCadastro().format(Utils.formatadorPadrao)));
 
