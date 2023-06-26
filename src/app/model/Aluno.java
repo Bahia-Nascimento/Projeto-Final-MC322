@@ -5,23 +5,29 @@ import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
 
+import javafx.beans.property.ReadOnlySetProperty;
 import javafx.beans.property.SimpleObjectProperty;
+import javafx.beans.property.SimpleSetProperty;
+import javafx.collections.FXCollections;
 
 public class Aluno extends Pessoa {
     private SimpleObjectProperty<Curso> curso;
     private final String ra;
-    private HashSet<Materia> grade;
-    private HashSet<Turma> turmas;
-    private HashSet<Materia> completas;
+    private ReadOnlySetProperty<Materia> grade;
+    private ReadOnlySetProperty<Turma> turmas;
+    private ReadOnlySetProperty<Materia> completas;
 
     public Aluno(CPF cpf, String nome, LocalDate dataNascimento, LocalDate dataCadastro, Curso curso, String ra,
             Collection<Materia> grade, Collection<Turma> turmas) {
         super(cpf, nome, dataNascimento, dataCadastro);
         this.curso = new SimpleObjectProperty<>(curso);
         this.ra = ra;
-        this.grade = new HashSet<Materia>(grade);
-        this.turmas = new HashSet<Turma>(turmas);
-        this.completas = new HashSet<Materia>(); 
+        this.grade = new SimpleSetProperty<>(
+                FXCollections.observableSet(new HashSet<>(grade)));
+        this.turmas = new SimpleSetProperty<>(
+                FXCollections.observableSet(new HashSet<>(turmas)));
+        this.completas = new SimpleSetProperty<>(FXCollections.observableSet(new HashSet<>()));
+
     }
 
     public String getCadastro() {
@@ -44,28 +50,28 @@ public class Aluno extends Pessoa {
         return this.ra;
     }
 
-    public Set<Materia> getGrade() {
-        return this.grade;
+    public ReadOnlySetProperty<Materia> gradeProperty() {
+        return grade;        
     }
 
-    public void setGrade(HashSet<Materia> grade) {
-        this.grade = grade;
+    public Set<Materia> getGrade() {
+        return this.grade.getValue();
+    }
+
+    public ReadOnlySetProperty<Materia> completasProperty() {
+        return completas;        
     }
 
     public Set<Materia> getCompletas() {
-        return this.completas;
+        return this.completas.getValue();
     }
 
-    public void seCompletas(HashSet<Materia> completas) {
-        this.completas = completas;
+    public ReadOnlySetProperty<Turma> turmasProperty() {
+        return turmas;        
     }
 
     public Set<Turma> getTurmas() {
-        return this.turmas;
-    }
-
-    public void setTurmas(HashSet<Turma> turmas) {
-        this.turmas = turmas;
+        return this.turmas.getValue();
     }
 
     public boolean addTurma(Turma t) {

@@ -6,6 +6,7 @@ import app.controllers.Controller;
 import app.model.Aluno;
 import app.model.Curso;
 import app.model.Materia;
+import javafx.collections.FXCollections;
 import javafx.geometry.Orientation;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
@@ -36,14 +37,14 @@ public class AtualizarAluno extends View<BorderPane> {
 		cursoSelecionado.getItems().addAll(Curso.CIENCIA, Curso.ENGENHARIA);
 		cursoSelecionado.setValue(aluno.getCurso());
 
-		centro.addColumn(0, 
+		centro.addColumn(0,
 				new Label("RA:"),
 				new Label("Nome:"),
 				new Label("CPF:"),
 				new Label("Data de Nascimento:"),
 				new Label("Data de Cadastro:"),
 				new Label("Curso:"));
-		centro.addColumn(1, 
+		centro.addColumn(1,
 				new Text(aluno.getRa()),
 				new Text(aluno.getNome()),
 				new Text(aluno.getCpf().getValor()),
@@ -57,19 +58,39 @@ public class AtualizarAluno extends View<BorderPane> {
 		centro.setHgap(10);
 		centro.setVgap(5);
 
-		
-		ListView<Materia> listaGrade = new ListView<>();
+		ListView<Materia> listaGrade = new ListView<>(FXCollections.observableArrayList(aluno.getGrade()));
 		listaGrade.setOrientation(Orientation.VERTICAL);
 		listaGrade.setCellFactory(lv -> new MateriaListCell());
 
+		ListView<Materia> listaCompletas = new ListView<>(FXCollections.observableArrayList(aluno.getCompletas()));
+		listaCompletas.setOrientation(Orientation.VERTICAL);
+		listaCompletas.setCellFactory(lv -> new MateriaListCell());
 
+		Button botaoPraDireita = new Button("🠖");
+		botaoPraDireita.setOnAction(e -> {
+			var selecionado = listaGrade.getSelectionModel().getSelectedItem();
+			if (selecionado != null) {
+				aluno.getGrade().remove(selecionado);
+				aluno.getCompletas().add(selecionado);
+			}
+		});
+		Button botaoPraEsquerda = new Button(" \u1F814");
+		botaoPraEsquerda.setOnAction(e -> {
+			var selecionado = listaCompletas.getSelectionModel().getSelectedItem();
+			if (selecionado != null) {
+				aluno.getGrade().remove(selecionado);
+				aluno.getCompletas().add(selecionado);
+			}
+		});
+		VBox botoes = new VBox(5, botaoPraDireita, botaoPraEsquerda);
 
+		HBox listas = new HBox(20, listaGrade, botoes, listaCompletas);
 
 		Button botaoVoltar = Utils.criarBotao("Voltar");
 		botaoVoltar.setOnAction(controller::navigateHome);
 		HBox base = new HBox(10, botaoVoltar);
 		base.setAlignment(Pos.BASELINE_CENTER);
-		
+
 		principal = new BorderPane(new VBox(10, centro));
 		principal.setBottom(base);
 	}
@@ -81,6 +102,6 @@ public class AtualizarAluno extends View<BorderPane> {
 
 	@Override
 	public Controller<? extends View<BorderPane>> getController() {
-		throw new UnsupportedOperationException("Unimplemented method 'getController'");
+		return controller;
 	}
 }

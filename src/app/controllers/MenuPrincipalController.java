@@ -43,7 +43,7 @@ public class MenuPrincipalController extends Controller<MenuPrincipal> {
 		Label l = new Label("Insira o RA: ");
 		TextField tf = new TextField();
 		tf.textProperty().addListener((o, textoAntigo, textoNovo) -> {
-			if (!textoNovo.chars().allMatch(Character::isDigit) || textoNovo.isEmpty()) {
+			if (!textoNovo.chars().allMatch(Character::isDigit)) {
 				tf.setText(textoAntigo);
 			}
 		});
