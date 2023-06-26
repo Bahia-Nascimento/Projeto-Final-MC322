@@ -3,7 +3,7 @@ package app.controllers;
 import app.views.VisualizarProfessor;
 
 /**
- * VIsualizarAlunoController
+ * VIsualizarProfessorController
  */
 public class VisualizarProfessorController extends Controller<VisualizarProfessor> {
 

@@ -2,11 +2,11 @@ package app.views;
 
 import app.Utils;
 import app.controllers.AtualizarAlunoController;
-import app.controllers.Controller;
 import app.model.Aluno;
 import app.model.Curso;
 import app.model.Materia;
 import javafx.collections.FXCollections;
+import javafx.geometry.Insets;
 import javafx.geometry.Orientation;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
@@ -86,13 +86,18 @@ public class AtualizarAluno extends View<BorderPane> {
 
 		HBox listas = new HBox(20, listaGrade, botoes, listaCompletas);
 
-		Button botaoVoltar = Utils.criarBotao("Voltar");
+		Button botaoVoltar = new Button("Voltar");
+		botaoVoltar.setMinHeight(20);
 		botaoVoltar.setOnAction(controller::navigateHome);
-		HBox base = new HBox(10, botaoVoltar);
-		base.setAlignment(Pos.BASELINE_CENTER);
-
+		HBox base = new HBox(10);
+		base.getChildren().addAll(botaoVoltar);
+		base.setMinHeight(15);
+		botaoVoltar.setPrefWidth(100);
+		HBox.setMargin(botaoVoltar, new Insets(10, 0, 50, 0));
+		
 		principal = new BorderPane(new VBox(10, centro));
 		principal.setBottom(base);
+		base.setAlignment(Pos.TOP_CENTER);
 	}
 
 	@Override
@@ -101,7 +106,7 @@ public class AtualizarAluno extends View<BorderPane> {
 	}
 
 	@Override
-	public Controller<? extends View<BorderPane>> getController() {
+	public AtualizarAlunoController getController() {
 		return controller;
 	}
 }

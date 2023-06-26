@@ -12,6 +12,7 @@ import app.views.AtualizarProfessor;
 import app.views.AtualizarTurma;
 import app.views.MenuPrincipal;
 import app.views.VisualizarAluno;
+import app.views.VisualizarProfessor;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.geometry.Insets;
@@ -174,6 +175,15 @@ public class MenuPrincipalController extends Controller<MenuPrincipal> {
 		var va = new VisualizarAluno(view.getStage(),
 				FXCollections.observableArrayList(model_a.alunosProperty().values()));
 		Parent root = va.getNode();
+		Scene cena = new Scene(root, App.scene.getWidth(), App.scene.getHeight());
+        cena.getStylesheets().setAll("resources/css/main.css");
+		view.getStage().setScene(cena);
+	}
+
+	public void visualizarProfessor(ActionEvent _e) {
+		var vp = new VisualizarProfessor(view.getStage(),
+				FXCollections.observableArrayList(model_p.professorProperty().values()));
+		Parent root = vp.getNode();
 		Scene cena = new Scene(root, App.scene.getWidth(), App.scene.getHeight());
         cena.getStylesheets().setAll("resources/css/main.css");
 		view.getStage().setScene(cena);
