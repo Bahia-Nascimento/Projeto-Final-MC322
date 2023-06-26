@@ -52,7 +52,6 @@ public class Faculdade {
                     LocalDate.parse(array[3], Utils.formatadorPadrao));
             addProfessor(p);
         }
-        System.out.println("Leu professores.");
 
         temp = CSV.lerMateria();
         for (String[] array : temp) {
@@ -71,7 +70,6 @@ public class Faculdade {
             }
             addMateria(m);
         }
-        System.out.println("Leu Materias");
 
         temp = CSV.lerGrade();
         System.out.println(temp.size());
@@ -87,7 +85,6 @@ public class Faculdade {
                 gradeEC.add(materias.get(cod));
             }
         }
-        System.out.println("Leu grades.");
 
         temp = CSV.lerAlunos();
         for (String[] array : temp) {
@@ -106,7 +103,13 @@ public class Faculdade {
             for (int i = 2; i < array.length; i++) {
                 alunos.get(array[0]).eliminarMateria(array[i].replaceAll("\"", ""));
             }
-        } 
+        }
+        
+        temp = CSV.lerTurmas();
+        for (String[] array : temp) {
+            Turma t = new Turma(materias.get(array[0]), array[1], professores.get(array[2]));
+            addTurma(t);
+        }
     }
 
     public void gravarDados() {
@@ -186,6 +189,14 @@ public class Faculdade {
 
     public void addMateria(Materia m) {
         materias.put(m.getCodigo(), m);
+    }
+
+    public boolean addTurma(Turma t) {
+        if (turmas.containsKey(t.getCodigo())) {
+            return false;
+        }
+        turmas.put(t.getCodigo(), t);
+        return true;
     }
 
     @Override
