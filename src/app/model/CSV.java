@@ -3,8 +3,11 @@ package app.model;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Set;
 
 public class CSV {
     public static ArrayList<String[]> lerAlunos() {
@@ -125,5 +128,41 @@ public class CSV {
             ioe.printStackTrace();
         }
         return null;
+    }
+
+    public static Boolean gravarCompletas(Collection<Aluno> alunos) {
+        try {
+            FileWriter w = new FileWriter("src/resources/saida/MateriasFeitas.CSV");
+            w.write("RA,CURSO,MATERIAS_FEITAS\n");
+            w.close();
+        } catch (IOException e) {
+            return false;
+        }
+
+        try {
+            FileWriter w = new FileWriter("src/resources/saida/MateriasFeitas.CSV", true);
+            for (Aluno a : alunos) {
+                Set<Materia> completas = a.getCompletas();
+                if (completas.isEmpty()) {
+                    continue;
+                }
+
+                String linha = a.getRa() + "," + a.getCurso().nomeCompleto() + ",\"";
+                int tam = completas.size();
+                int i = 0;
+                for (Materia m : completas) {
+                    linha += m.getCodigo();
+                    if (i != tam - 1) linha += ",";
+                    i++;
+                }
+                linha += "\"";
+
+                w.write(linha);
+                w.close();
+            }
+            return true;
+        } catch (IOException e) {
+            return false;
+        }
     }
 }
