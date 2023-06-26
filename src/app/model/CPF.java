@@ -1,6 +1,5 @@
 package app.model;
 
-import javafx.beans.property.ReadOnlyProperty;
 import javafx.beans.property.SimpleStringProperty;
 
 /**
