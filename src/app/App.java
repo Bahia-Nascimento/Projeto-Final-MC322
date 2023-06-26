@@ -23,6 +23,7 @@ public class App extends Application {
         primaryStage.setTitle("iComp");
         primaryStage.centerOnScreen();
         primaryStage.show();
+        System.out.println(App.scene);
     }
 
     @Override

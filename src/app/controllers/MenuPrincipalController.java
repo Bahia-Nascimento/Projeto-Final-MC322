@@ -60,14 +60,18 @@ public class MenuPrincipalController extends Controller<MenuPrincipal> {
 		botaoConfirmar.setOnAction(e -> {
 			Aluno alunoSelecionado = model_a.alunosProperty().get(tf.getText());
 			if (alunoSelecionado != null) {
-				var aa = new AtualizarAluno(janelaRA, alunoSelecionado);
+				var aa = new AtualizarAluno(stage, alunoSelecionado);
 				Parent a = aa.getNode();
 				Scene cena = new Scene(a, 500, 500);
 				cena.getStylesheets().setAll("resources/css/main.css");
-				janelaRA.close();
 				boolean maximize = stage.isMaximized();
 				stage.setScene(cena);
-				stage.setMaximized(maximize);
+				if (maximize) {
+					stage.setMaximized(false);
+					stage.setMaximized(true);
+
+				}
+				janelaRA.close();
 			}
 		});
 		Button botaoVoltar = new Button("Cancelar");
@@ -176,7 +180,7 @@ public class MenuPrincipalController extends Controller<MenuPrincipal> {
 				FXCollections.observableArrayList(model_a.alunosProperty().values()));
 		Parent root = va.getNode();
 		Scene cena = new Scene(root, App.scene.getWidth(), App.scene.getHeight());
-        cena.getStylesheets().setAll("resources/css/main.css");
+		cena.getStylesheets().setAll("resources/css/main.css");
 		view.getStage().setScene(cena);
 	}
 
@@ -185,7 +189,7 @@ public class MenuPrincipalController extends Controller<MenuPrincipal> {
 				FXCollections.observableArrayList(model_p.professorProperty().values()));
 		Parent root = vp.getNode();
 		Scene cena = new Scene(root, App.scene.getWidth(), App.scene.getHeight());
-        cena.getStylesheets().setAll("resources/css/main.css");
+		cena.getStylesheets().setAll("resources/css/main.css");
 		view.getStage().setScene(cena);
 	}
 }
