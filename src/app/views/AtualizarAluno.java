@@ -46,6 +46,9 @@ public class AtualizarAluno extends View<BorderPane> {
 				new Text(aluno.getDataNascimento().format(Utils.formatadorPadrao)),
 				new Text(aluno.getDataCadastro().format(Utils.formatadorPadrao)),
 				cursoSelecionado);
+		cursoSelecionado.getSelectionModel().selectedItemProperty().addListener((o, old, newCurso) -> {
+			aluno.setCurso(newCurso);
+		});
 		centro.setAlignment(Pos.CENTER);
 		centro.setHgap(10);
 		centro.setVgap(5);

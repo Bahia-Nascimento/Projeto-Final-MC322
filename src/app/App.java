@@ -16,7 +16,7 @@ public class App extends Application {
     public void start(Stage primaryStage) throws Exception {
         MenuPrincipal mp = new MenuPrincipal(primaryStage);
         Parent root = mp.getNode();
-        scene = new Scene(root, 400, 400);
+        scene = new Scene(root, 1000, 1000);
         scene.getStylesheets().setAll("resources/css/main.css");
         primaryStage.setMaximized(true);
         primaryStage.setScene(scene);

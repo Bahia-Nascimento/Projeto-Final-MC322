@@ -1,5 +1,6 @@
 package app.controllers;
 
+import app.App;
 import app.model.Aluno;
 import app.model.AlunosModel;
 import app.model.Professor;
@@ -173,7 +174,7 @@ public class MenuPrincipalController extends Controller<MenuPrincipal> {
 		var va = new VisualizarAluno(view.getStage(),
 				FXCollections.observableArrayList(model_a.alunosProperty().values()));
 		Parent root = va.getNode();
-		Scene cena = new Scene(root, view.getStage().getWidth(),view.getStage().getHeight());
+		Scene cena = new Scene(root, App.scene.getWidth(), App.scene.getHeight());
         cena.getStylesheets().setAll("resources/css/main.css");
 		view.getStage().setScene(cena);
 	}
