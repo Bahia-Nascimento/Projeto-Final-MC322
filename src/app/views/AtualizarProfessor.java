@@ -2,10 +2,12 @@ package app.views;
 
 import app.Utils;
 import app.controllers.AtualizarProfessorController;
+import app.model.Faculdade;
 import app.model.Professor;
 import app.model.Turma;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.collections.SetChangeListener;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
@@ -40,10 +42,20 @@ public class AtualizarProfessor extends View<BorderPane> {
 				new Text(professor.getDataNascimento().format(Utils.formatadorPadrao)),
 				new Text(professor.getDataCadastro().format(Utils.formatadorPadrao)));
 
-		ObservableList<Turma> turmas = FXCollections.observableArrayList(professor.turmasProperty());
-		ListView<Turma> listaTurmas = new ListView<>(turmas);
-		listaTurmas.setCellFactory(a -> new TurmaListCell());
-		listaTurmas.selectionModelProperty();
+		ObservableList<Turma> turmasProf = FXCollections.observableArrayList(professor.turmasProperty());
+		professor.turmasProperty().addListener(new SetChangeListener<Turma>() {
+			@Override
+			public void onChanged(Change<? extends Turma> change) {
+
+			}
+
+		});
+		ListView<Turma> listaTurmasProf = new ListView<>(turmasProf);
+		listaTurmasProf.setCellFactory(a -> new TurmaListCell());
+		listaTurmasProf.selectionModelProperty();
+
+		ObservableList<Turma> turmas = FXCollections.observableArrayList(Faculdade.getIC().getTurmas().values());
+		
 
 		Button botaoVoltar = new Button("Voltar");
 		botaoVoltar.setMinHeight(20);
