@@ -90,6 +90,10 @@ public class Aluno extends Pessoa {
         }
     }
 
+    public boolean solicitarDiploma() {
+        return grade.isEmpty();
+    }
+
     @Override
     public String toString() {
         return "cpf: " + getCpf() +
