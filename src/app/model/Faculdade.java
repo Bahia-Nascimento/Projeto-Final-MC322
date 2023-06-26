@@ -80,6 +80,13 @@ public class Faculdade {
             Aluno a = new Aluno(new CPF(array[1]), array[0], LocalDate.parse(array[2]), LocalDate.parse(array[3]), Curso.fromString(array[4]), array[5], gradeAluno, Collections.emptyList());
             addAluno(a);
         }
+
+        temp = CSV.lerCompletas();
+        for (String[] array : temp) {
+            for (int i = 2; i < array.length; i++) {
+                alunos.get(array[0]).eliminarMateria(array[i].replaceAll("\"", ""));
+            }
+        } 
     }
 
     public String getNome() {

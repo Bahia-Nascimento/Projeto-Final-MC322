@@ -8,8 +8,9 @@ import java.util.Set;
 public class Aluno extends Pessoa {
     private Curso curso;
     private final String ra;
-    private Set<Materia> grade;
-    private Set<Turma> turmas;
+    private HashSet<Materia> grade;
+    private HashSet<Turma> turmas;
+    private HashSet<Materia> completas;
 
     public Aluno(CPF cpf, String nome, LocalDate dataNascimento, LocalDate dataCadastro, Curso curso, String ra,
             Collection<Materia> grade, Collection<Turma> turmas) {
@@ -18,6 +19,7 @@ public class Aluno extends Pessoa {
         this.ra = ra;
         this.grade = new HashSet<Materia>(grade);
         this.turmas = new HashSet<Turma>(turmas);
+        this.completas = new HashSet<Materia>(); 
     }
 
     public String getCadastro() {
@@ -40,15 +42,23 @@ public class Aluno extends Pessoa {
         return this.grade;
     }
 
-    public void setGrade(Set<Materia> grade) {
+    public void setGrade(HashSet<Materia> grade) {
         this.grade = grade;
+    }
+
+    public Set<Materia> getCompletas() {
+        return this.completas;
+    }
+
+    public void seCompletas(HashSet<Materia> completas) {
+        this.completas = completas;
     }
 
     public Set<Turma> getTurmas() {
         return this.turmas;
     }
 
-    public void setTurmas(Set<Turma> turmas) {
+    public void setTurmas(HashSet<Turma> turmas) {
         this.turmas = turmas;
     }
 
@@ -68,6 +78,16 @@ public class Aluno extends Pessoa {
             }
         }
         return false;
+    }
+
+    public void eliminarMateria(String codigo) {
+        for (Materia m : grade) {
+            if (m.getCodigo().equals(codigo)) {
+                grade.remove(m);
+                completas.add(m);
+                break;
+            }
+        }
     }
 
     @Override
