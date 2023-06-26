@@ -1,14 +1,14 @@
-package app.controllers;
+// package app.controllers;
 
-import app.views.VisualizarMateria;
+// import app.views.VisualizarMateria;
 
-/**
- * VIsualizarAlunoController
- */
-public class VisualizarMateriaController extends Controller<VisualizarMateria> {
+// /**
+//  * VIsualizarAlunoController
+//  */
+// public class VisualizarMateriaController extends Controller<VisualizarMateria> {
 
-	public VisualizarMateriaController(VisualizarMateria view) {
-		super(view);
-	}
+// 	public VisualizarMateriaController(VisualizarMateria view) {
+// 		super(view);
+// 	}
 
-}
+// }
