@@ -1,5 +1,8 @@
 package app.model;
 
+import java.util.HashSet;
+import java.util.Set;
+
 public enum Curso {
 	CIENCIA("42 - Ciência da Computação", "Ciência da Computação", 42), 
 	ENGENHARIA("34 - Engenharia da Computação", "Engenharia da Computação", 34);
@@ -7,11 +10,17 @@ public enum Curso {
 	private final String nomeCompleto;
 	private final String nomeCurto;
 	private final int codigo;
+	private final Set<Materia> grade;
 
 	Curso(String nomeCompleto, String nomeCurto, int codigo) {
 		this.nomeCompleto = nomeCompleto;
 		this.nomeCurto = nomeCurto;
 		this.codigo = codigo;
+		grade = new HashSet<>();
+	}
+
+	public Set<Materia> grade() {
+		return grade;
 	}
 
 	public String nomeCompleto() {

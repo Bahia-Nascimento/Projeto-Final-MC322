@@ -19,6 +19,8 @@ public class Faculdade {
     public static Faculdade getIC() {
         if (ic == null) {
             ic = new Faculdade("Instituto de Computação", new CNPJ("46.068.425/0001-33"));
+            Curso.CIENCIA.grade().addAll(ic.gradeCC);
+            Curso.ENGENHARIA.grade().addAll(ic.gradeEC);
         }
         return ic;
     }
@@ -110,7 +112,7 @@ public class Faculdade {
     }
 
     public void gravarDados() {
-        
+
     }
 
     public String getNome() {

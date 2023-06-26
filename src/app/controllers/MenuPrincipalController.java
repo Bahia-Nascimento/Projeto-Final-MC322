@@ -110,6 +110,8 @@ public class MenuPrincipalController extends Controller<MenuPrincipal> {
 		centro.getChildren().addAll(l, tf);
 
 		HBox botoes = new HBox(10);
+		botoes.setAlignment(Pos.BASELINE_CENTER);
+		
 		Button botaoConfirmar = new Button("Confirmar");
 		botaoConfirmar.setOnAction(e -> {
 			Professor professorSelecionado = model_p.professorProperty().get(tf.getText());
