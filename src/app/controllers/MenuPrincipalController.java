@@ -13,6 +13,7 @@ import app.views.AtualizarTurma;
 import app.views.MenuPrincipal;
 import app.views.VisualizarAluno;
 import app.views.VisualizarProfessor;
+import app.views.VisualizarTurma;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.geometry.Insets;
@@ -184,6 +185,15 @@ public class MenuPrincipalController extends Controller<MenuPrincipal> {
 		var vp = new VisualizarProfessor(view.getStage(),
 				FXCollections.observableArrayList(model_p.professorProperty().values()));
 		Parent root = vp.getNode();
+		Scene cena = new Scene(root, App.scene.getWidth(), App.scene.getHeight());
+        cena.getStylesheets().setAll("resources/css/main.css");
+		view.getStage().setScene(cena);
+	}
+
+	public void visualizarTurma(ActionEvent _e) {
+		var vt = new VisualizarTurma(view.getStage(),
+				FXCollections.observableArrayList(model_t.turmaProperty().values()));
+		Parent root = vt.getNode();
 		Scene cena = new Scene(root, App.scene.getWidth(), App.scene.getHeight());
         cena.getStylesheets().setAll("resources/css/main.css");
 		view.getStage().setScene(cena);
