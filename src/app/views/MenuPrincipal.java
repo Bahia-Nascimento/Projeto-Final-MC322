@@ -14,14 +14,8 @@ import javafx.stage.Stage;
 
 import static app.Utils.*;
 
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
-
 import app.controllers.MenuPrincipalController;
-import app.model.CPF;
 import app.model.Materia;
-import app.model.Professor;
-import app.model.Turma;
 
 public class MenuPrincipal extends View<BorderPane> {
 	private BorderPane bp;
@@ -73,18 +67,7 @@ public class MenuPrincipal extends View<BorderPane> {
 		botaoCadProfessor.setOnAction(e -> controller.atualizarProfessor(e, stage));
 		
 		Button botaoCadTurma = criarBotao("Atualizar Turma");
-		botaoCadTurma.setOnAction(e -> {
-			
-			DateTimeFormatter formatador = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-			Professor teste_prof = new Professor("658262", new CPF("71031371885"), "Luiz Danilo Souza",
-			LocalDate.parse("09/06/1958", formatador), LocalDate.parse("09/06/1958", formatador));
-			Materia teste_mat = new Materia("MC102", 6, null);
-			Turma teste_turma = new Turma(teste_mat,"A" ,teste_prof);
-			AtualizarTurma atualizarTurma = new AtualizarTurma(stage, teste_turma);
-			Scene scene_tur = new Scene(atualizarTurma.getNode(), 400, 400);
-			stage.setScene(scene_tur);
-			
-		});
+		botaoCadTurma.setOnAction(e -> controller.atualizarTurma(e, stage));
 
 		Button botaoVerAlunos = criarBotao("Visualizar Alunos");
 		botaoVerAlunos.setOnAction(controller::visualizarAluno);

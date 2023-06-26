@@ -142,11 +142,6 @@ public class MenuPrincipalController extends Controller<MenuPrincipal> {
 
 		Label l = new Label("Insira o Codigo da Matéria: ");
 		TextField tf = new TextField();
-		tf.textProperty().addListener((o, textoAntigo, textoNovo) -> {
-			if (!textoNovo.chars().allMatch(Character::isDigit) || textoNovo.isEmpty()) {
-				tf.setText(textoAntigo);
-			}
-		});
 		l.setLabelFor(tf);
 
 		HBox centro = new HBox(10);
