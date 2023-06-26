@@ -10,6 +10,8 @@ import app.views.AtualizarAluno;
 import app.views.AtualizarProfessor;
 import app.views.AtualizarTurma;
 import app.views.MenuPrincipal;
+import app.views.VisualizarAluno;
+import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -23,13 +25,13 @@ import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 
 public class MenuPrincipalController extends Controller<MenuPrincipal> {
-	private AlunosModel model;
+	private AlunosModel model_a;
 	private ProfessorModel model_p;
 	private TurmaModel model_t;
 
 	public MenuPrincipalController(MenuPrincipal view) {
 		super(view);
-		model = AlunosModel.getInstance();
+		model_a = AlunosModel.getInstance();
 		model_p = ProfessorModel.getInstance();
 		model_t = TurmaModel.getInstance();
 	}
@@ -54,7 +56,7 @@ public class MenuPrincipalController extends Controller<MenuPrincipal> {
 
 		Button botaoConfirmar = new Button("Confirmar");
 		botaoConfirmar.setOnAction(e -> {
-			Aluno alunoSelecionado = model.alunosProperty().get(tf.getText());
+			Aluno alunoSelecionado = model_a.alunosProperty().get(tf.getText());
 			if (alunoSelecionado != null) {
 				var aa = new AtualizarAluno(janelaRA, alunoSelecionado);
 				Parent a = aa.getNode();
@@ -165,5 +167,14 @@ public class MenuPrincipalController extends Controller<MenuPrincipal> {
 		cena.getStylesheets().setAll("resources/css/main.css");
 		janelaCodigo.setScene(cena);
 		janelaCodigo.show();
+	}
+
+	public void visualizarAluno(ActionEvent _e) {
+		var va = new VisualizarAluno(view.getStage(),
+				FXCollections.observableArrayList(model_a.alunosProperty().values()));
+		Parent root = va.getNode();
+		Scene cena = new Scene(root, view.getStage().getWidth(),view.getStage().getHeight());
+        cena.getStylesheets().setAll("resources/css/main.css");
+		view.getStage().setScene(cena);
 	}
 }

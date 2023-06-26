@@ -1,9 +1,11 @@
 package app.model;
+
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
 
+import app.Utils;
 import javafx.beans.property.SimpleMapProperty;
 import javafx.collections.FXCollections;
 
@@ -11,12 +13,20 @@ public class Faculdade {
     private String nome;
     private final CNPJ cnpj;
     private final SimpleMapProperty<String, Aluno> alunos;
+    private static Faculdade ic;
+
+    public static Faculdade getIC() {
+        if (ic == null) {
+            ic = new Faculdade("Instituto de Computação", new CNPJ("46.068.425/0001-33"));
+        }
+        return ic;
+    }
+
     private final SimpleMapProperty<String, Professor> professores;
     private final SimpleMapProperty<String, Materia> materias;
     private final SimpleMapProperty<String, Turma> turmas;
     protected final HashSet<Materia> gradeCC;
     protected final HashSet<Materia> gradeEC;
-    
 
     public Faculdade(String nome, CNPJ cnpj) {
         this.nome = nome;
@@ -33,9 +43,15 @@ public class Faculdade {
     public void lerDados() {
         ArrayList<String[]> temp = CSV.lerProfessores();
         for (String[] array : temp) {
-            Professor p = new Professor(array[4], new CPF(array[1]), array[0], LocalDate.parse(array[3]), LocalDate.parse(array[4]));
+            Professor p = new Professor(
+                    array[4],
+                    new CPF(array[1]),
+                    array[0],
+                    LocalDate.parse(array[2], Utils.formatadorPadrao),
+                    LocalDate.parse(array[3], Utils.formatadorPadrao));
             addProfessor(p);
         }
+        System.out.println("Leu professores.");
 
         temp = CSV.lerMateria();
         for (String[] array : temp) {
@@ -54,8 +70,10 @@ public class Faculdade {
             }
             addMateria(m);
         }
+        System.out.println("Leu Materias");
 
         temp = CSV.lerGrade();
+        System.out.println(temp.size());
         for (int i = 1; i < temp.get(0).length; i++) {
             String cod = temp.get(0)[i].replaceAll("\"", "");
             if (materias.containsKey(cod)) {
@@ -68,6 +86,7 @@ public class Faculdade {
                 gradeEC.add(materias.get(cod));
             }
         }
+        System.out.println("Leu grades.");
 
         temp = CSV.lerAlunos();
         for (String[] array : temp) {
@@ -77,7 +96,7 @@ public class Faculdade {
             } else {
                 gradeAluno = gradeEC;
             }
-            Aluno a = new Aluno(new CPF(array[1]), array[0], LocalDate.parse(array[2]), LocalDate.parse(array[3]), Curso.fromString(array[4]), array[5], gradeAluno, Collections.emptyList());
+            Aluno a = new Aluno(new CPF(array[1]), array[0], LocalDate.parse(array[2], Utils.formatadorPadrao), LocalDate.parse(array[3], Utils.formatadorPadrao), Curso.fromString(array[4]), array[5], gradeAluno, Collections.emptyList());
             addAluno(a);
         }
 
@@ -151,7 +170,7 @@ public class Faculdade {
     @Override
     public String toString() {
         return "nome: " + getNome() +
-            ", cnpj: " + getCnpj() ;
+                ", cnpj: " + getCnpj();
     }
 
     @Override

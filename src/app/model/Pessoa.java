@@ -1,18 +1,21 @@
 package app.model;
 import java.time.LocalDate;
 
+import javafx.beans.property.SimpleObjectProperty;
+
 public abstract class Pessoa {
     private final CPF cpf;
     private String nome;
-    private final LocalDate dataNascimento;
-    private final LocalDate dataCadastro;
+
+    private final SimpleObjectProperty<LocalDate> dataNascimento;
+    private final SimpleObjectProperty<LocalDate> dataCadastro;
 
 
     public Pessoa(CPF cpf, String nome, LocalDate dataNascimento, LocalDate dataCadastro) {
         this.cpf = cpf;
         this.nome = nome;
-        this.dataNascimento = dataNascimento;
-        this.dataCadastro = dataCadastro;
+        this.dataNascimento = new SimpleObjectProperty<>(dataNascimento);
+        this.dataCadastro = new SimpleObjectProperty<LocalDate>(dataCadastro);
     }
 
     public CPF getCpf() {
@@ -27,12 +30,20 @@ public abstract class Pessoa {
         this.nome = nome;
     }
 
+    public SimpleObjectProperty<LocalDate> dataNascimentoProperty() {
+        return dataNascimento;
+    }
+
     public LocalDate getDataNascimento() {
-        return this.dataNascimento;
+        return this.dataNascimento.getValue();
+    }
+
+    public SimpleObjectProperty<LocalDate> dataCadastroProperty() {
+        return dataNascimento;
     }
 
     public LocalDate getDataCadastro() {
-        return this.dataCadastro;
+        return this.dataCadastro.getValue();
     }
     
     public abstract String getCadastro();

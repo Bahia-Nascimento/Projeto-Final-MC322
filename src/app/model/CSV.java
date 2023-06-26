@@ -10,10 +10,8 @@ public class CSV {
     public static ArrayList<String[]> lerAlunos() {
         ArrayList<String[]> listaAlunos = new ArrayList<String[]>();
         String separador = ",";
-        try{
-            File file = new File("lib/dados/Alunos.csv");
-            FileReader leitor_arquivo = new FileReader(file);
-            BufferedReader leitor_buffer = new BufferedReader(leitor_arquivo);
+        try (FileReader leitor_arquivo = new FileReader(new File("lib/dados/Alunos.csv"));
+                BufferedReader leitor_buffer = new BufferedReader(leitor_arquivo);) {
             String linha = "";
             String[] lista_temporaria;
             leitor_buffer.readLine();
@@ -23,19 +21,17 @@ public class CSV {
             }
             leitor_buffer.close();
             return listaAlunos;
-        }catch (IOException ioe) {
+        } catch (IOException ioe) {
             ioe.printStackTrace();
         }
         return null;
     }
 
-     public static ArrayList<String[]> lerMateria() {
+    public static ArrayList<String[]> lerMateria() {
         ArrayList<String[]> listaMateria = new ArrayList<String[]>();
-        String separador =",";
-        try{
-            File file = new File("lib/dados/Materia.csv");
-            FileReader leitor_arquivo = new FileReader(file);
-            BufferedReader leitor_buffer = new BufferedReader(leitor_arquivo);
+        String separador = ",";
+        try (FileReader leitor_arquivo = new FileReader(new File("lib/dados/Materia.csv"));
+                BufferedReader leitor_buffer = new BufferedReader(leitor_arquivo);) {
             String linha = "";
             String[] lista_temporaria;
             leitor_buffer.readLine();
@@ -43,9 +39,8 @@ public class CSV {
                 lista_temporaria = linha.split(separador);
                 listaMateria.add(lista_temporaria);
             }
-            leitor_buffer.close();
             return listaMateria;
-        }catch (IOException ioe) {
+        } catch (IOException ioe) {
             ioe.printStackTrace();
         }
         return null;
@@ -53,11 +48,9 @@ public class CSV {
 
     public static ArrayList<String[]> lerProfessores() {
         ArrayList<String[]> listaProfessores = new ArrayList<String[]>();
-        String separador =",";
-        try{
-            File file = new File("lib/dados/Professores.csv");
-            FileReader leitor_arquivo = new FileReader(file);
-            BufferedReader leitor_buffer = new BufferedReader(leitor_arquivo);
+        String separador = ",";
+        try (FileReader leitor_arquivo = new FileReader(new File("lib/dados/Professores.csv"));
+                BufferedReader leitor_buffer = new BufferedReader(leitor_arquivo);) {
             String linha = "";
             String[] lista_temporaria;
             leitor_buffer.readLine();
@@ -65,9 +58,8 @@ public class CSV {
                 lista_temporaria = linha.split(separador);
                 listaProfessores.add(lista_temporaria);
             }
-            leitor_buffer.close();
             return listaProfessores;
-        }catch (IOException ioe) {
+        } catch (IOException ioe) {
             ioe.printStackTrace();
         }
         return null;
@@ -75,21 +67,17 @@ public class CSV {
 
     public static ArrayList<String[]> lerGrade() {
         ArrayList<String[]> listaGrade = new ArrayList<String[]>();
-        String separador =",";
-        try{
-            File file = new File("lib/dados/Grade.csv");
-            FileReader leitor_arquivo = new FileReader(file);
-            BufferedReader leitor_buffer = new BufferedReader(leitor_arquivo);
+        String separador = ",";
+        try (FileReader leitor_arquivo = new FileReader(new File("lib/dados/Grade.csv"));
+                BufferedReader leitor_buffer = new BufferedReader(leitor_arquivo);) {
             String linha = "";
             String[] lista_temporaria;
-            leitor_buffer.readLine();
             while ((linha = leitor_buffer.readLine()) != null) {
                 lista_temporaria = linha.split(separador);
                 listaGrade.add(lista_temporaria);
             }
-            leitor_buffer.close();
             return listaGrade;
-        }catch (IOException ioe) {
+        } catch (IOException ioe) {
             ioe.printStackTrace();
         }
         return null;
