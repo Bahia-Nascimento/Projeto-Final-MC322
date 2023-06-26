@@ -7,6 +7,7 @@ import java.util.Set;
 import javafx.beans.property.ReadOnlySetProperty;
 import javafx.beans.property.SimpleSetProperty;
 import javafx.collections.FXCollections;
+import javafx.collections.ObservableSet;
 
 public class Professor extends Pessoa{
     private final String cadastro;
