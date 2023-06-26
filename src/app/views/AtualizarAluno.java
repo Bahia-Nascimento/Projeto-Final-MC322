@@ -1,19 +1,15 @@
 package app.views;
 
-import app.App;
 import app.Utils;
 import app.controllers.AtualizarAlunoController;
 import app.model.Aluno;
 import app.model.Curso;
 import app.model.Materia;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.SetChangeListener;
 import javafx.geometry.Insets;
 import javafx.geometry.Orientation;
 import javafx.geometry.Pos;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;

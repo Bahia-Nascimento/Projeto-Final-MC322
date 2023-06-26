@@ -114,7 +114,7 @@ public class MenuPrincipalController extends Controller<MenuPrincipal> {
 		botaoConfirmar.setOnAction(e -> {
 			Professor professorSelecionado = model_p.professorProperty().get(tf.getText());
 			if (professorSelecionado != null) {
-				var aa = new AtualizarProfessor(janelaCadastro, professorSelecionado);
+				var aa = new AtualizarProfessor(stage, professorSelecionado);
 				Parent a = aa.getNode();
 				Scene cena = new Scene(a, 500, 500);
 				cena.getStylesheets().setAll("resources/css/main.css");
@@ -157,7 +157,7 @@ public class MenuPrincipalController extends Controller<MenuPrincipal> {
 		botaoConfirmar.setOnAction(e -> {
 			Turma turmaSelecionada = model_t.turmaProperty().get(tf.getText());
 			if (turmaSelecionada != null) {
-				var aa = new AtualizarTurma(janelaCodigo, turmaSelecionada);
+				var aa = new AtualizarTurma(stage, turmaSelecionada);
 				Parent a = aa.getNode();
 				Scene cena = new Scene(a, 500, 500);
 				cena.getStylesheets().setAll("resources/css/main.css");
