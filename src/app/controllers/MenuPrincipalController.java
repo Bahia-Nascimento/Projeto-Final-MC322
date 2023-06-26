@@ -232,6 +232,9 @@ public class MenuPrincipalController extends Controller<MenuPrincipal> {
 		HBox botoes = new HBox(10);
 		botoes.setAlignment(Pos.BASELINE_CENTER);
 
+		Button botaoVoltar = new Button("Cancelar");
+		botaoVoltar.setOnAction(e -> janelaRA.close());
+		
 		Button botaoConfirmar = new Button("Confirmar");
 		botaoConfirmar.setOnAction(e -> {
 			Aluno alunoSelecionado = model_a.alunosProperty().get(tf.getText());
@@ -245,13 +248,10 @@ public class MenuPrincipalController extends Controller<MenuPrincipal> {
 				if (maximize) {
 					view.getStage().setMaximized(false);
 					view.getStage().setMaximized(true);
-
 				}
 				janelaRA.close();
 			}
 		});
-		Button botaoVoltar = new Button("Cancelar");
-		botaoVoltar.setOnAction(e -> janelaRA.close());
 
 		botoes.getChildren().addAll(botaoVoltar, botaoConfirmar);
 

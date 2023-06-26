@@ -16,17 +16,16 @@ public class SolicitarDiploma extends View<BorderPane> {
     private BorderPane principal;
     private SolicitarDiplomaController controller;
 
-    private Aluno aluno;
-
     public SolicitarDiploma(Stage stage, Aluno aluno) {
         super(stage);
-        this.aluno = aluno;
+
         controller = new SolicitarDiplomaController(this);
 
         if (aluno.solicitarDiploma() == false) {
             Stage janelaSD = new Stage();
 
-            Label l = new Label(" A solicitação de diploma do aluno " + aluno.getNome() + " foi autorizada");
+            Label l = new Label("  A solicitação de diploma do aluno " + aluno.getNome() + " não foi autorizada.\n" 
+                                + "  Faltam materias a serem realizadas.");
             l.setWrapText(true);
             HBox centro = new HBox(10);
             centro.getChildren().addAll(l);
@@ -51,7 +50,7 @@ public class SolicitarDiploma extends View<BorderPane> {
         if (aluno.solicitarDiploma() == true) {
             Stage janelaSD = new Stage();
 
-            Label l = new Label(" A solicitação de diploma do aluno " + aluno.getNome() + " foi autorizada");
+            Label l = new Label("  A solicitação de diploma do aluno " + aluno.getNome() + " foi autorizada.");
             l.setWrapText(true);
             HBox centro = new HBox(10);
             centro.getChildren().addAll(l);
