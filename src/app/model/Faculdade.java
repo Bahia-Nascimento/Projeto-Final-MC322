@@ -109,6 +109,10 @@ public class Faculdade {
         } 
     }
 
+    public void gravarDados() {
+        
+    }
+
     public String getNome() {
         return this.nome;
     }
