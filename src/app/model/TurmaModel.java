@@ -18,10 +18,7 @@ public class TurmaModel {
 
 	private TurmaModel() {
 		turma.set(FXCollections.observableHashMap());
-		turma.getValue().put("MC102", new Turma(
-				null,
-                null,
-				null));
+		turma.bindContentBidirectional(Faculdade.getIC().turmasProperty());
 	}
 
 	public MapProperty<String, Turma> turmaProperty() {
