@@ -5,13 +5,17 @@ import app.controllers.AtualizarAlunoController;
 import app.controllers.Controller;
 import app.model.Aluno;
 import app.model.Curso;
+import app.model.Materia;
+import javafx.geometry.Orientation;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
+import javafx.scene.control.ListView;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
@@ -53,13 +57,20 @@ public class AtualizarAluno extends View<BorderPane> {
 		centro.setHgap(10);
 		centro.setVgap(5);
 
+		
+		ListView<Materia> listaGrade = new ListView<>();
+		listaGrade.setOrientation(Orientation.VERTICAL);
+		listaGrade.setCellFactory(lv -> new MateriaListCell());
+
+
+
 
 		Button botaoVoltar = Utils.criarBotao("Voltar");
 		botaoVoltar.setOnAction(controller::navigateHome);
 		HBox base = new HBox(10, botaoVoltar);
 		base.setAlignment(Pos.BASELINE_CENTER);
-
-		principal = new BorderPane(centro);
+		
+		principal = new BorderPane(new VBox(10, centro));
 		principal.setBottom(base);
 	}
 

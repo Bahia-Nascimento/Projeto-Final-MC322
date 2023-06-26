@@ -14,6 +14,10 @@ public abstract class Controller<V extends View<?>> {
 
     public void navigateHome(ActionEvent e) {
         view.getStage().setScene(App.scene);
+        if (view.getStage().isMaximized()) {
+            view.getStage().setMaximized(false);
+            view.getStage().setMaximized(true);
+        }
     }
 
     public V getView() {
