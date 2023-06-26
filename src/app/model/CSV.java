@@ -104,4 +104,26 @@ public class CSV {
         }
         return null;
     }
+
+    public static ArrayList<String[]> lerTurmas() {
+        ArrayList<String[]> completas = new ArrayList<String[]>();
+        String separador =",";
+        try{
+            File file = new File("lib/dados/Turmas.csv");
+            FileReader leitor_arquivo = new FileReader(file);
+            BufferedReader leitor_buffer = new BufferedReader(leitor_arquivo);
+            String linha = "";
+            String[] lista_temporaria;
+            leitor_buffer.readLine();
+            while ((linha = leitor_buffer.readLine()) != null) {
+                lista_temporaria = linha.split(separador);
+                completas.add(lista_temporaria);
+            }
+            leitor_buffer.close();
+            return completas;
+        }catch (IOException ioe) {
+            ioe.printStackTrace();
+        }
+        return null;
+    }
 }

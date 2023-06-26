@@ -32,7 +32,7 @@ public class Materia {
     }
 
     public void countUp() {
-        this.count = this.count++;
+        this.count++;
     }
 
     public void setCreditos(int creditos){

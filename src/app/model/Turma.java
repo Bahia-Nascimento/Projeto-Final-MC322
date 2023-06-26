@@ -12,7 +12,7 @@ public class Turma {
 
     public Turma(Materia materia, String horario, Professor professor) {
         this.materia = materia;
-        this.codigo = materia.getCodigo() + " " + materia.getCount();
+        this.codigo = materia.getCodigo() + " " + (char)('A' + materia.getCount());
         materia.countUp();
         this.horario = horario;
         this.listaAlunos = new ArrayList<Aluno>();
