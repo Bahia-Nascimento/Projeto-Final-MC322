@@ -3,6 +3,7 @@ package app.controllers;
 import app.App;
 import app.model.Aluno;
 import app.model.AlunosModel;
+import app.model.Materia;
 import app.model.MateriaModel;
 import app.model.Professor;
 import app.model.ProfessorModel;
@@ -15,6 +16,7 @@ import app.views.MenuPrincipal;
 import app.views.VisualizarAluno;
 import app.views.VisualizarMateria;
 import app.views.VisualizarProfessor;
+import app.views.VisualizarTurma;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.geometry.Insets;
@@ -39,6 +41,7 @@ public class MenuPrincipalController extends Controller<MenuPrincipal> {
 		model_a = AlunosModel.getInstance();
 		model_p = ProfessorModel.getInstance();
 		model_t = TurmaModel.getInstance();
+		model_m = MateriaModel.getInstance();
 	}
 
 	public void atualizarAluno(ActionEvent _e, Stage stage) {
@@ -196,6 +199,15 @@ public class MenuPrincipalController extends Controller<MenuPrincipal> {
 		var vm = new VisualizarMateria(view.getStage(),
 				FXCollections.observableArrayList(model_m.materiaProperty().values()));
 		Parent root = vm.getNode();
+		Scene cena = new Scene(root, App.scene.getWidth(), App.scene.getHeight());
+        cena.getStylesheets().setAll("resources/css/main.css");
+		view.getStage().setScene(cena);
+	}
+
+	public void visualizarTurma(ActionEvent _e) {
+		var vt = new VisualizarTurma(view.getStage(),
+				FXCollections.observableArrayList(model_t.turmaProperty().values()));
+		Parent root = vt.getNode();
 		Scene cena = new Scene(root, App.scene.getWidth(), App.scene.getHeight());
         cena.getStylesheets().setAll("resources/css/main.css");
 		view.getStage().setScene(cena);

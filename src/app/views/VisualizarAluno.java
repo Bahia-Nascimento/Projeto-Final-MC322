@@ -96,7 +96,6 @@ public class VisualizarAluno extends View<BorderPane> {
 		colunaCpf.setCellValueFactory(cdf -> {
 			return cdf.getValue().getCpf().valor();
 		});
-
 		TableColumn<Aluno, String> colunaNome = new TableColumn<>("Nome");
 		colunaNome.setCellValueFactory(new PropertyValueFactory<>("nome"));
 

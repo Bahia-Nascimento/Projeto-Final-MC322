@@ -93,8 +93,7 @@ public class MenuPrincipal extends View<BorderPane> {
 		Button botaoVerMateria = criarBotao("Visualizar Matérias");
 		botaoVerMateria.setOnAction(controller::visualizarMateria);
 		Button botaoVerTurma = criarBotao("Visualizar Turma");
-		botaoVerTurma.setOnAction(e -> {
-		});
+		botaoVerTurma.setOnAction(controller::visualizarTurma);
 
 		Button botaoDiploma = criarBotao("Solicitar Diploma");
 		botaoDiploma.setOnAction(e -> {

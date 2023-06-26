@@ -9,9 +9,7 @@ import javafx.geometry.Insets;
 import javafx.geometry.Orientation;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
-import javafx.scene.control.ContentDisplay;
 import javafx.scene.control.Label;
-import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -22,18 +20,6 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 public class VisualizarMateria extends View<BorderPane> {
-	public class TurmaListCell extends ListCell<Turma> {
-
-		@Override
-		protected void updateItem(Turma item, boolean empty) {
-			super.updateItem(item, empty);
-			if (item != null) {
-				setText(item.getCodigo());
-				setContentDisplay(ContentDisplay.TOP);
-			}
-		}
-
-	}
 
 	private BorderPane principal;
 	private VisualizarMateriaController controller;
