@@ -27,6 +27,17 @@ public class Aluno extends Pessoa {
         this.turmas = new SimpleSetProperty<>(
                 FXCollections.observableSet(new HashSet<>(turmas)));
         this.completas = new SimpleSetProperty<>(FXCollections.observableSet(new HashSet<>()));
+        this.curso.addListener((observable, oldCurso, newCurso) -> {
+            if (oldCurso != newCurso) {
+                this.grade.clear();
+                for (Materia materia : newCurso.grade()) {
+                    if (!completas.contains(materia)) {
+                        this.grade.add(materia);
+                    }
+                }
+            }
+        });
+
 
     }
 

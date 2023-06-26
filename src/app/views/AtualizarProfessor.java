@@ -3,10 +3,14 @@ package app.views;
 import app.Utils;
 import app.controllers.AtualizarProfessorController;
 import app.model.Professor;
+import app.model.Turma;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.ListView;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
@@ -23,31 +27,37 @@ public class AtualizarProfessor extends View<BorderPane> {
 
 		GridPane centro = new GridPane();
 
-		centro.addColumn(0, 
+		centro.addColumn(0,
 				new Label("Cadastro:"),
 				new Label("Nome:"),
 				new Label("CPF:"),
 				new Label("Data de Nascimento:"),
 				new Label("Data de Cadastro:"));
-		centro.addColumn(1, 
+		centro.addColumn(1,
 				new Text(professor.getCadastro()),
 				new Text(professor.getNome()),
 				new Text(professor.getCpf().getValor()),
 				new Text(professor.getDataNascimento().format(Utils.formatadorPadrao)),
 				new Text(professor.getDataCadastro().format(Utils.formatadorPadrao)));
 
-				Button botaoVoltar = new Button("Voltar");
-				botaoVoltar.setMinHeight(20);
-				botaoVoltar.setOnAction(controller::navigateHome);
-				HBox base = new HBox(10);
-				base.getChildren().addAll(botaoVoltar);
-				base.setMinHeight(15);
-				botaoVoltar.setPrefWidth(100);
-				HBox.setMargin(botaoVoltar, new Insets(10, 0, 50, 0));
-		
-				principal = new BorderPane(centro);
-				principal.setBottom(base);
-				base.setAlignment(Pos.TOP_CENTER);
+		ObservableList<Turma> turmas = FXCollections.observableArrayList(professor.turmasProperty());
+		ListView<Turma> listaTurmas = new ListView<>(turmas);
+		listaTurmas.setCellFactory(a -> new TurmaListCell());
+		listaTurmas.selectionModelProperty();
+
+		Button botaoVoltar = new Button("Voltar");
+		botaoVoltar.setMinHeight(20);
+		botaoVoltar.setOnAction(controller::navigateHome);
+		HBox base = new HBox(10);
+		base.getChildren().addAll(botaoVoltar);
+		base.setMinHeight(15);
+		botaoVoltar.setPrefWidth(100);
+		HBox.setMargin(botaoVoltar, new Insets(10, 0, 50, 0));
+
+		centro.setAlignment(Pos.CENTER);
+		principal = new BorderPane(centro);
+		principal.setBottom(base);
+		base.setAlignment(Pos.TOP_CENTER);
 	}
 
 	@Override

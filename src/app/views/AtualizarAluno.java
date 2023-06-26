@@ -122,8 +122,10 @@ public class AtualizarAluno extends View<BorderPane> {
 			}
 		});
 		VBox botoes = new VBox(5, botaoPraDireita, botaoPraEsquerda);
+		botoes.setAlignment(Pos.CENTER);
 
 		HBox listas = new HBox(20, listaGrade, botoes, listaCompletas);
+		listas.setAlignment(Pos.CENTER);
 
 		Button botaoVoltar = new Button("Voltar");
 		botaoVoltar.setMinHeight(20);

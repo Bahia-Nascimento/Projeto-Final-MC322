@@ -1,7 +1,6 @@
 package app.views;
 
 import javafx.geometry.Pos;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
@@ -15,7 +14,6 @@ import javafx.stage.Stage;
 import static app.Utils.*;
 
 import app.controllers.MenuPrincipalController;
-import app.model.Materia;
 
 public class MenuPrincipal extends View<BorderPane> {
 	private BorderPane bp;
@@ -77,16 +75,8 @@ public class MenuPrincipal extends View<BorderPane> {
 		botaoVerMateria.setOnAction(controller::visualizarMateria);
 		Button botaoVerTurma = criarBotao("Visualizar Turma");
 		botaoVerTurma.setOnAction(controller::visualizarTurma);
-
 		Button botaoDiploma = criarBotao("Solicitar Diploma");
-		botaoDiploma.setOnAction(e -> {
-	
-			Materia teste_mat = new Materia("MC102", 6, null);
-			AtualizarMateria atualizarMateria = new AtualizarMateria(stage, teste_mat);
-			Scene scene_mat = new Scene(atualizarMateria.getNode(), 400, 400);
-			stage.setScene(scene_mat);
-	
-		});
+		botaoDiploma.setOnAction(controller::solicitarDiploma);
 
 		Button botaoSair = criarBotao("Sair");
 		botaoSair.setOnAction(e -> {

@@ -12,6 +12,7 @@ import app.views.AtualizarAluno;
 import app.views.AtualizarProfessor;
 import app.views.AtualizarTurma;
 import app.views.MenuPrincipal;
+import app.views.SolicitarDiploma;
 import app.views.VisualizarAluno;
 import app.views.VisualizarMateria;
 import app.views.VisualizarProfessor;
@@ -110,6 +111,8 @@ public class MenuPrincipalController extends Controller<MenuPrincipal> {
 		centro.getChildren().addAll(l, tf);
 
 		HBox botoes = new HBox(10);
+		botoes.setAlignment(Pos.BASELINE_CENTER);
+		
 		Button botaoConfirmar = new Button("Confirmar");
 		botaoConfirmar.setOnAction(e -> {
 			Professor professorSelecionado = model_p.professorProperty().get(tf.getText());
@@ -209,5 +212,56 @@ public class MenuPrincipalController extends Controller<MenuPrincipal> {
 		Scene cena = new Scene(root, App.scene.getWidth(), App.scene.getHeight());
         cena.getStylesheets().setAll("resources/css/main.css");
 		view.getStage().setScene(cena);
+	}
+
+	public void solicitarDiploma(ActionEvent _e) {
+		Stage janelaRA = new Stage();
+
+		Label l = new Label("Insira o RA: ");
+		TextField tf = new TextField();
+		tf.textProperty().addListener((o, textoAntigo, textoNovo) -> {
+			if (!textoNovo.chars().allMatch(Character::isDigit)) {
+				tf.setText(textoAntigo);
+			}
+		});
+		l.setLabelFor(tf);
+
+		HBox centro = new HBox(10);
+		centro.getChildren().addAll(l, tf);
+
+		HBox botoes = new HBox(10);
+		botoes.setAlignment(Pos.BASELINE_CENTER);
+
+		Button botaoVoltar = new Button("Cancelar");
+		botaoVoltar.setOnAction(e -> janelaRA.close());
+		
+		Button botaoConfirmar = new Button("Confirmar");
+		botaoConfirmar.setOnAction(e -> {
+			Aluno alunoSelecionado = model_a.alunosProperty().get(tf.getText());
+			if (alunoSelecionado != null) {
+				var sd = new SolicitarDiploma(view.getStage(), alunoSelecionado);
+				Parent a = sd.getNode();
+				Scene cena = new Scene(a, 500, 500);
+				cena.getStylesheets().setAll("resources/css/main.css");
+				boolean maximize = view.getStage().isMaximized();
+				view.getStage().setScene(cena);
+				if (maximize) {
+					view.getStage().setMaximized(false);
+					view.getStage().setMaximized(true);
+				}
+				janelaRA.close();
+			}
+		});
+
+		botoes.getChildren().addAll(botaoVoltar, botaoConfirmar);
+
+		BorderPane painel = new BorderPane(centro);
+		painel.setBottom(botoes);
+		BorderPane.setMargin(botoes, new Insets(0, 0, 20, 0));
+
+		Scene cena = new Scene(painel, 350, 100);
+		cena.getStylesheets().setAll("resources/css/main.css");
+		janelaRA.setScene(cena);
+		janelaRA.show();
 	}
 }
