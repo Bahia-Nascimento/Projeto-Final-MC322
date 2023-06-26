@@ -11,6 +11,7 @@ public class MateriaListCell extends ListCell<Materia> {
 			if (item == null || empty) {
 				setDisabled(true);
 				setGraphic(null);
+				setText(null);
 			}
 			if (item != null) {
 				setDisabled(false);
