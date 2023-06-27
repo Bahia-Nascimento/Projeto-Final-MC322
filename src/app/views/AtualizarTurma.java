@@ -4,7 +4,9 @@ import app.controllers.AtualizarTurmaController;
 import app.model.Aluno;
 import app.model.Faculdade;
 import app.model.Turma;
+import javafx.beans.property.SimpleObjectProperty;
 import javafx.collections.FXCollections;
+import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -17,6 +19,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
@@ -30,6 +33,7 @@ public class AtualizarTurma extends View<BorderPane> {
 		controller = new AtualizarTurmaController(this);
 		stage.getIcons().add(new Image("resources/img/iComp_logo.png"));
 
+		var alunoARemover = new SimpleObjectProperty<Aluno>(null);
 		this.turma = turma;
 		GridPane centro = new GridPane();
 
@@ -47,6 +51,20 @@ public class AtualizarTurma extends View<BorderPane> {
 		ObservableList<Aluno> alunos = FXCollections.observableArrayList(turma.listaAlunosProperty());
 		ListView<Aluno> listaAlunos = new ListView<>(alunos);
 		listaAlunos.setCellFactory(a -> new AlunoListCell());
+		turma.listaAlunosProperty().addListener(new ListChangeListener<Aluno>() {
+			@Override
+			public void onChanged(Change<? extends Aluno> c) {
+				var adicionado = c.getAddedSubList();
+				alunos.addAll(adicionado);
+				alunos.removeAll(c.getRemoved());
+			}
+			
+		});
+
+		Button botaoRemover = new Button("Remover aluno selecionado.");
+		botaoRemover.setOnAction(e -> {
+			alunoARemover.setValue(listaAlunos.getSelectionModel().getSelectedItem());
+		});
 
 		Label labelAluno = new Label("Insira o ra do aluno a adicionar");
 		TextField tfAluno = new TextField();
@@ -62,14 +80,26 @@ public class AtualizarTurma extends View<BorderPane> {
 			Aluno aluno = alunosIC.get(ra);
 			if (aluno == null) {
 				Stage janelaErro = new Stage();
-				Label textoErro = new Label();
-				Scene cena = new Scene(null, 200, 100);
+				Label textoErro = new Label("Não existe aluno com ra " + ra);
+				Button botaoOK = new Button("OK");
+				botaoOK.setOnAction(_e -> {
+					janelaErro.close();
+				});
+				VBox root = new VBox(5, textoErro, botaoOK);
+				Scene cena = new Scene(root, 200, 100);
+				janelaErro.setScene(cena);
+				janelaErro.show();
+			} else {
+				aluno.addTurma(turma);
 			}
 		});
 
+		HBox botoes = new HBox(10, botaoAdicionarAluno, botaoRemover);
+		botoes.setAlignment(Pos.CENTER);
+
 		Button botaoConfirmar = new Button("Confirmar mudanças.");
 		botaoConfirmar.setMinHeight(20);
-		botaoConfirmar.setOnAction(e -> controller.professorTf(tfProfessor.getText(), tHorario.getText()));
+		botaoConfirmar.setOnAction(e -> controller.professorTf(tfProfessor.getText(), tHorario.getText(), alunoARemover.getValue()));
 
 		Button botaoVoltar = new Button("Voltar");
 		botaoVoltar.setMinHeight(20);
@@ -80,7 +110,9 @@ public class AtualizarTurma extends View<BorderPane> {
 		botaoVoltar.setPrefWidth(100);
 		HBox.setMargin(botaoVoltar, new Insets(10, 0, 50, 0));
 
-		principal = new BorderPane(centro);
+		VBox vbox = new VBox(5, centro, new Label("Alunos cadastrados"), listaAlunos, labelAluno, tfAluno, botoes);
+
+		principal = new BorderPane(vbox);
 		principal.setBottom(base);
 		base.setAlignment(Pos.TOP_CENTER);
 	}

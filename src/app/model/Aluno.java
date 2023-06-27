@@ -86,12 +86,11 @@ public class Aluno extends Pessoa {
     }
 
     public boolean addTurma(Turma t) {
-        if (turmas.contains(t)) {
-            return false;
+        if (turmas.getValue().add(t)) {
+            t.addAluno(this);
+            return true;
         }
-        turmas.add(t);
-        t.addAluno(this);
-        return true;
+        return false;
     }
 
     public boolean remTurma(String codigo) {
