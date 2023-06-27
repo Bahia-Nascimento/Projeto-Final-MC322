@@ -9,6 +9,8 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Set;
 
+import app.Utils;
+
 public class CSV {
     public static ArrayList<String[]> lerAlunos() {
         ArrayList<String[]> listaAlunos = new ArrayList<String[]>();
@@ -157,6 +159,29 @@ public class CSV {
                 }
                 linha += "\"\n";
 
+                w.write(linha);
+            }
+            w.close();
+            return true;
+        } catch (IOException e) {
+            return false;
+        }
+    }
+
+    public static Boolean gravarAlunos(Collection<Aluno> alunos) {
+        try {
+            FileWriter w = new FileWriter("lib/dados/Alunos.csv");
+            w.write("NOME,CPF,DATA_NASCIMENTO,DATA_CADASTRO,CURSO,RA\n");
+            w.close();
+        } catch (IOException e) {
+            return false;
+        }
+
+        try {
+            FileWriter w = new FileWriter("lib/dados/Alunos.csv", true);
+            for (Aluno a : alunos) {
+                String linha = a.getNome() + "," + a.getCpf().getValor() + "," + a.getDataNascimento().format(Utils.formatadorPadrao) + "," +
+                a.getDataCadastro().format(Utils.formatadorPadrao) + "," + a.getCurso().nomeCurto() + "," + a.getRa() + "\n";
                 w.write(linha);
             }
             w.close();

@@ -12,6 +12,8 @@ public class TurmaListCell extends ListCell<Turma> {
         if (item != null) {
             setText(item.getCodigo());
             setContentDisplay(ContentDisplay.TOP);
+        } else {
+            setText(null);
         }
     }
 

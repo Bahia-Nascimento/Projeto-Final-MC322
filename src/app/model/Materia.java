@@ -80,6 +80,10 @@ public class Materia {
         return new SimpleStringProperty(s);
     }
 
+    public boolean addTurma(Turma t) {
+        return turmas.add(t);
+    }
+
     @Override
     public String toString() {
         return "código: " + getCodigo() +

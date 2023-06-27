@@ -17,6 +17,8 @@ public class Turma {
         this.horario = horario;
         this.listaAlunos = new ArrayList<Aluno>();
         this.professor = professor;
+        this.professor.addTurma(this);
+        this.materia.addTurma(this);
     }
 
 
