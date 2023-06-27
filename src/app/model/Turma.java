@@ -2,8 +2,6 @@ package app.model;
 
 import java.util.ArrayList;
 
-import javafx.scene.control.Button;
-
 public class Turma {
     private final Materia materia;
     private final String codigo;

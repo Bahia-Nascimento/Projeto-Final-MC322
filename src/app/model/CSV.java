@@ -132,7 +132,7 @@ public class CSV {
 
     public static Boolean gravarCompletas(Collection<Aluno> alunos) {
         try {
-            FileWriter w = new FileWriter("src/resources/saida/MateriasFeitas.CSV");
+            FileWriter w = new FileWriter("lib/dados/MateriasFeitas.csv");
             w.write("RA,CURSO,MATERIAS_FEITAS\n");
             w.close();
         } catch (IOException e) {
@@ -140,7 +140,7 @@ public class CSV {
         }
 
         try {
-            FileWriter w = new FileWriter("src/resources/saida/MateriasFeitas.CSV", true);
+            FileWriter w = new FileWriter("lib/dados/MateriasFeitas.csv", true);
             for (Aluno a : alunos) {
                 Set<Materia> completas = a.getCompletas();
                 if (completas.isEmpty()) {

@@ -1,5 +1,6 @@
 package app;
 
+import app.model.Faculdade;
 import app.views.MenuPrincipal;
 import javafx.application.Application;
 import javafx.scene.Parent;
@@ -28,6 +29,6 @@ public class App extends Application {
 
     @Override
     public void stop() {
-
+        Faculdade.getIC().gravarDados();
     }
 }

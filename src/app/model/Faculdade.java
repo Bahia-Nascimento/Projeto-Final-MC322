@@ -41,7 +41,6 @@ public class Faculdade {
         this.gradeCC = new HashSet<Materia>();
         this.gradeEC = new HashSet<Materia>();
         lerDados();
-        gravarDados();
     }
 
     public void lerDados() {
