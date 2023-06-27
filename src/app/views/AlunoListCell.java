@@ -11,6 +11,8 @@ public class AlunoListCell extends ListCell<Aluno> {
 		if (item != null) {
 			setText(item.getNome());
 			setContentDisplay(ContentDisplay.TOP);
+		} else {
+			setText(null);
 		}
 	}
 

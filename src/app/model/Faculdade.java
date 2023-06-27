@@ -112,11 +112,19 @@ public class Faculdade {
             Turma t = new Turma(materias.get(array[0]), array[1], professores.get(array[2]));
             addTurma(t);
         }
+    
+        temp = CSV.lerCadastros();
+        for (String[] array : temp) {
+            for (int i = 1; i < array.length; i++) {
+                alunos.get(array[0]).addTurma((turmas.get(array[i].replaceAll("\"", ""))));
+            }
+        }
     }
 
     public void gravarDados() {
         CSV.gravarCompletas(alunos.values());
         CSV.gravarAlunos(alunos.values());
+        CSV.gravarCadastros(alunos.values());
     }
 
     public String getNome() {

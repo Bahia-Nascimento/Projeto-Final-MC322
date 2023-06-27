@@ -90,6 +90,7 @@ public class Aluno extends Pessoa {
             return false;
         }
         turmas.add(t);
+        t.addAluno(this);
         return true;
     }
 
@@ -97,6 +98,7 @@ public class Aluno extends Pessoa {
         for (Turma t : turmas) {
             if (t.getMateria().getCodigo().equals(codigo)) {
                 turmas.remove(t);
+                t.remAluno(ra);
                 return true;
             }
         }

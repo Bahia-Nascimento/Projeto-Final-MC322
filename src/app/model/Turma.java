@@ -1,12 +1,15 @@
 package app.model;
 
-import java.util.ArrayList;
+import javafx.beans.property.ReadOnlyListProperty;
+import javafx.beans.property.SimpleListProperty;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 
 public class Turma {
     private final Materia materia;
     private final String codigo;
     private String horario;
-    private ArrayList<Aluno> listaAlunos;
+    private ReadOnlyListProperty<Aluno> listaAlunos;
     private Professor professor;
 
 
@@ -15,7 +18,7 @@ public class Turma {
         this.codigo = materia.getCodigo() + " " + (char)('A' + materia.getCount());
         materia.countUp();
         this.horario = horario;
-        this.listaAlunos = new ArrayList<Aluno>();
+        this.listaAlunos = new SimpleListProperty<>(FXCollections.observableArrayList());
         this.professor = professor;
         this.professor.addTurma(this);
         this.materia.addTurma(this);
@@ -38,8 +41,12 @@ public class Turma {
         return this.horario;
     }
 
-    public ArrayList<Aluno> getListaAlunos() {
-        return this.listaAlunos;
+    public ReadOnlyListProperty<Aluno> listaAlunosProperty() {
+        return listaAlunos;
+    }
+
+    public ObservableList<Aluno> getListaAlunos() {
+        return this.listaAlunos.getValue();
     }
 
     public Boolean addAluno(Aluno a) {

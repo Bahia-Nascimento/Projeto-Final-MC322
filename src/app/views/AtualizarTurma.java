@@ -1,11 +1,17 @@
 package app.views;
 
 import app.controllers.AtualizarTurmaController;
+import app.model.Aluno;
+import app.model.Faculdade;
 import app.model.Turma;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.ListView;
 import javafx.scene.image.Image;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
@@ -37,6 +43,29 @@ public class AtualizarTurma extends View<BorderPane> {
 				new Text(turma.getMateria().getCodigo()),
 				tHorario,
 				tfProfessor);
+
+		ObservableList<Aluno> alunos = FXCollections.observableArrayList(turma.listaAlunosProperty());
+		ListView<Aluno> listaAlunos = new ListView<>(alunos);
+		listaAlunos.setCellFactory(a -> new AlunoListCell());
+
+		Label labelAluno = new Label("Insira o ra do aluno a adicionar");
+		TextField tfAluno = new TextField();
+		tfAluno.textProperty().addListener((observable, textoAntigo, textoNovo) -> {
+			if (!textoNovo.chars().allMatch(Character::isDigit)) {
+				tfAluno.setText(textoAntigo);
+			}
+		});
+		Button botaoAdicionarAluno = new Button("Adicionar Aluno");
+		botaoAdicionarAluno.setOnAction(e -> {
+			var alunosIC = Faculdade.getIC().getAlunos();
+			String ra = tfAluno.getText();
+			Aluno aluno = alunosIC.get(ra);
+			if (aluno == null) {
+				Stage janelaErro = new Stage();
+				Label textoErro = new Label();
+				Scene cena = new Scene(null, 200, 100);
+			}
+		});
 
 		Button botaoConfirmar = new Button("Confirmar mudanças.");
 		botaoConfirmar.setMinHeight(20);

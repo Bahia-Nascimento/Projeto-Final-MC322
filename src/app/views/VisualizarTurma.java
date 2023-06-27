@@ -3,7 +3,6 @@ package app.views;
 
 import app.controllers.VisualizarTurmaController;
 import app.model.Aluno;
-import app.model.Professor;
 import app.model.Turma;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;

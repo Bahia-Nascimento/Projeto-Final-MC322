@@ -132,6 +132,28 @@ public class CSV {
         return null;
     }
 
+    public static ArrayList<String[]> lerCadastros() {
+        ArrayList<String[]> completas = new ArrayList<String[]>();
+        String separador =",";
+        try{
+            File file = new File("lib/dados/CadastroTurmas.csv");
+            FileReader leitor_arquivo = new FileReader(file);
+            BufferedReader leitor_buffer = new BufferedReader(leitor_arquivo);
+            String linha = "";
+            String[] lista_temporaria;
+            leitor_buffer.readLine();
+            while ((linha = leitor_buffer.readLine()) != null) {
+                lista_temporaria = linha.split(separador);
+                completas.add(lista_temporaria);
+            }
+            leitor_buffer.close();
+            return completas;
+        }catch (IOException ioe) {
+            ioe.printStackTrace();
+        }
+        return null;
+    }
+
     public static Boolean gravarCompletas(Collection<Aluno> alunos) {
         try {
             FileWriter w = new FileWriter("lib/dados/MateriasFeitas.csv");
@@ -182,6 +204,40 @@ public class CSV {
             for (Aluno a : alunos) {
                 String linha = a.getNome() + "," + a.getCpf().getValor() + "," + a.getDataNascimento().format(Utils.formatadorPadrao) + "," +
                 a.getDataCadastro().format(Utils.formatadorPadrao) + "," + a.getCurso().nomeCurto() + "," + a.getRa() + "\n";
+                w.write(linha);
+            }
+            w.close();
+            return true;
+        } catch (IOException e) {
+            return false;
+        }
+    }
+
+    public static Boolean gravarCadastros(Collection<Aluno> alunos) {
+        try {
+            FileWriter w = new FileWriter("lib/dados/CadastroTurmas.csv");
+            w.write("RA,CODIGOS\n");
+            w.close();
+        } catch (IOException e) {
+            return false;
+        }
+
+        try {
+            FileWriter w = new FileWriter("lib/dados/CadastroTurmas.csv", true);
+            for (Aluno a : alunos) {
+                Set<Turma> cadastros = a.getTurmas();
+                if (cadastros.isEmpty()) continue;
+
+                String linha = a.getRa() + ",\"";
+                int tam = cadastros.size();
+                int i = 0;
+                for (Turma t : cadastros) {
+                    linha += t.getCodigo();
+                    if (i != tam - 1) linha += ",";
+                    i++;
+                }
+                linha += "\"\n";
+
                 w.write(linha);
             }
             w.close();
