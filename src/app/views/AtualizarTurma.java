@@ -54,11 +54,19 @@ public class AtualizarTurma extends View<BorderPane> {
 		turma.listaAlunosProperty().addListener(new ListChangeListener<Aluno>() {
 			@Override
 			public void onChanged(Change<? extends Aluno> c) {
-				var adicionado = c.getAddedSubList();
-				alunos.addAll(adicionado);
-				alunos.removeAll(c.getRemoved());
+				if (c.next()) {
+					if (c.getAddedSize() > 0) {
+						var adicionado = c.getAddedSubList();
+						alunos.addAll(adicionado);
+					}
+					if (c.getRemovedSize() > 0) {
+						alunos.removeAll(c.getRemoved());
+					}
+				}
+				if (c.next()) {
+				}
 			}
-			
+
 		});
 
 		Button botaoRemover = new Button("Remover aluno selecionado.");
@@ -99,7 +107,8 @@ public class AtualizarTurma extends View<BorderPane> {
 
 		Button botaoConfirmar = new Button("Confirmar mudanças.");
 		botaoConfirmar.setMinHeight(20);
-		botaoConfirmar.setOnAction(e -> controller.professorTf(tfProfessor.getText(), tHorario.getText(), alunoARemover.getValue()));
+		botaoConfirmar.setOnAction(
+				e -> controller.professorTf(tfProfessor.getText(), tHorario.getText(), alunoARemover.getValue()));
 
 		Button botaoVoltar = new Button("Voltar");
 		botaoVoltar.setMinHeight(20);
@@ -109,6 +118,7 @@ public class AtualizarTurma extends View<BorderPane> {
 		base.setMinHeight(15);
 		botaoVoltar.setPrefWidth(100);
 		HBox.setMargin(botaoVoltar, new Insets(10, 0, 50, 0));
+		HBox.setMargin(botaoConfirmar, new Insets(10, 0, 50, 0));
 
 		VBox vbox = new VBox(5, centro, new Label("Alunos cadastrados"), listaAlunos, labelAluno, tfAluno, botoes);
 
