@@ -25,9 +25,12 @@ public class SolicitarDiploma extends View<BorderPane> {
         if (aluno.solicitarDiploma() == false) {
             Stage janelaSD = new Stage();
             janelaSD.getIcons().add(new Image("resources/img/iComp_logo.png"));
-            Label l = new Label("  A solicitação de diploma do aluno " + aluno.getNome() + " não foi autorizada.\n" 
-                                + "  Faltam materias a serem realizadas.");
+            
+            Label l = new Label("\n\n\n\n\n        A solicitação de diploma do aluno " + aluno.getNome() + " não foi autorizada.\n" 
+                                + "\n                                             Faltam materias a serem realizadas.");
             l.setWrapText(true);
+            l.setMaxWidth(Double.MAX_VALUE);
+            l.setAlignment(Pos.CENTER);
             HBox centro = new HBox(10);
             centro.getChildren().addAll(l);
 
@@ -42,7 +45,7 @@ public class SolicitarDiploma extends View<BorderPane> {
             painel.setBottom(botoes);
             BorderPane.setMargin(botoes, new Insets(0, 0, 20, 0));
 
-            Scene cena = new Scene(painel, 400, 300);
+            Scene cena = new Scene(painel, 500, 300);
             cena.getStylesheets().setAll("resources/css/main.css");
             janelaSD.setScene(cena);
             janelaSD.show();
@@ -51,8 +54,9 @@ public class SolicitarDiploma extends View<BorderPane> {
         if (aluno.solicitarDiploma() == true) {
             Stage janelaSD = new Stage();
             janelaSD.getIcons().add(new Image("resources/img/iComp_logo.png"));
-            Label l = new Label("  A solicitação de diploma do aluno " + aluno.getNome() + " foi autorizada.");
-            l.setWrapText(true);
+            Label l = new Label("\n\n\n\n\n\n\n            A solicitação de diploma do aluno " + aluno.getNome() + " foi autorizada.");
+            l.setMaxWidth(Double.MAX_VALUE);
+            l.setAlignment(Pos.CENTER);
             HBox centro = new HBox(10);
             centro.getChildren().addAll(l);
 
@@ -67,7 +71,7 @@ public class SolicitarDiploma extends View<BorderPane> {
             painel.setBottom(botoes);
             BorderPane.setMargin(botoes, new Insets(0, 0, 20, 0));
 
-            Scene cena = new Scene(painel, 400, 300);
+            Scene cena = new Scene(painel, 500, 300);
             cena.getStylesheets().setAll("resources/css/main.css");
             janelaSD.setScene(cena);
             janelaSD.show();
