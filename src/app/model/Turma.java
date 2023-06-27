@@ -1,8 +1,5 @@
 package app.model;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import javafx.beans.property.ReadOnlyListProperty;
 import javafx.beans.property.SimpleListProperty;
 import javafx.collections.FXCollections;
