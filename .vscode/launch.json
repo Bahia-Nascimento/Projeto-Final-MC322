@@ -17,6 +17,6 @@
             "request": "launch",
             "mainClass": "app.App",
             "vmArgs": "--module-path lib/javafx/windows --add-modules javafx.controls,javafx.fxml -Dfile.encoding=UTF-8 -Djava.library.path=lib/javafx/windows"
-        },
+        }
     ]
 }

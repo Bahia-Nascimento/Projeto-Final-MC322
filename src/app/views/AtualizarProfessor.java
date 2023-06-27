@@ -2,7 +2,6 @@ package app.views;
 
 import app.Utils;
 import app.controllers.AtualizarProfessorController;
-import app.model.Faculdade;
 import app.model.Professor;
 import app.model.Turma;
 import javafx.collections.FXCollections;
@@ -55,9 +54,6 @@ public class AtualizarProfessor extends View<BorderPane> {
 		ListView<Turma> listaTurmasProf = new ListView<>(turmasProf);
 		listaTurmasProf.setCellFactory(a -> new TurmaListCell());
 		listaTurmasProf.selectionModelProperty();
-
-		ObservableList<Turma> turmas = FXCollections.observableArrayList(Faculdade.getIC().getTurmas().values());
-		
 
 		Button botaoVoltar = new Button("Voltar");
 		botaoVoltar.setMinHeight(20);

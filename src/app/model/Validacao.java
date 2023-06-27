@@ -1,6 +1,37 @@
 package app.model;
 
 public class Validacao {
+    private static String[] diasDaSemana = {"SEG", "TER", "QUA", "QUI", "SEX", "SAB", "DOM"};
+
+    public static boolean validarHorario(String horario) {
+        String[] partes = horario.split(" ");
+        if (partes.length != 2) {
+            return false;
+        }
+        boolean diaValido = false;
+        for (String diaDaSemana : diasDaSemana) {
+            if (diaDaSemana.equals(partes[0])) {
+                diaValido = true;
+                break;
+            }
+        }
+        if (!diaValido) {
+            return false;
+        }
+        partes = partes[1].split(":");
+        try {
+            int hora = Integer.parseInt(partes[0]);
+            int minuto = Integer.parseInt(partes[1]);
+            if (hora < 8 || hora > 21 || minuto != 0) {
+                return false;
+            }
+            return true;
+        } catch (NumberFormatException e) {
+            return false;
+        }
+        
+    }
+
     public static Boolean validaCPF(String cpf) {
         // Valida o CPF com base nos digitos verificadores. Invalida CPFs com quantidade errada de digitos ou todos os digitos iguais
         cpf = cpf.replaceAll("[^\\d]", "");

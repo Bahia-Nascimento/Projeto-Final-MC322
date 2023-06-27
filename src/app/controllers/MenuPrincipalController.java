@@ -98,7 +98,7 @@ public class MenuPrincipalController extends Controller<MenuPrincipal> {
 
 	public void atualizarProfessor(ActionEvent _e, Stage stage) {
 		Stage janelaCadastro = new Stage();
-
+		janelaCadastro.getIcons().add(new Image("resources/img/iComp_logo.png"));
 		Label l = new Label("Insira o Cadastro do Professor: ");
 		TextField tf = new TextField();
 		tf.textProperty().addListener((o, textoAntigo, textoNovo) -> {
@@ -143,7 +143,7 @@ public class MenuPrincipalController extends Controller<MenuPrincipal> {
 
 	public void atualizarTurma(ActionEvent _e, Stage stage) {
 		Stage janelaCodigo = new Stage();
-
+		janelaCodigo.getIcons().add(new Image("resources/img/iComp_logo.png"));
 		Label l = new Label("Insira o Codigo da Matéria: ");
 		TextField tf = new TextField();
 		l.setLabelFor(tf);
