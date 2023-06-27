@@ -16,3 +16,9 @@
     como forma de segurança.
         O maior desafio, que foi a interface gráfica, foi realizada por meio do Javafx,
     que cria as telas por meio de um sistema de VIEW<->CONTROLLER<->MODEL.
+
+# Participantes
+>Breno Shigeki Guimarães Nishimoto (220599)\n
+>Gabriel de Carvalho Silva Nascimento (222103)\n
+>Gustavo Souza (171425)\n
+>Mateus da Costa e Silva Rios Alves de Andrade (230806)\n
