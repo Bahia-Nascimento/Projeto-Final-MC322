@@ -18,6 +18,7 @@ public class AtualizarTurma extends View<BorderPane> {
 
 	public AtualizarTurma(Stage stage, Turma turma) {
 		super(stage);
+		controller = new AtualizarTurmaController(this);
 
 		GridPane centro = new GridPane();
 
