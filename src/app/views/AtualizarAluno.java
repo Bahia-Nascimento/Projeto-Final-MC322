@@ -14,6 +14,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
+import javafx.scene.image.Image;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
@@ -28,6 +29,7 @@ public class AtualizarAluno extends View<BorderPane> {
 	public AtualizarAluno(Stage stage, Aluno aluno) {
 		super(stage);
 		controller = new AtualizarAlunoController(this);
+		stage.getIcons().add(new Image("resources/img/iComp_logo.png"));
 
 		GridPane centro = new GridPane();
 		centro.setAlignment(Pos.CENTER);

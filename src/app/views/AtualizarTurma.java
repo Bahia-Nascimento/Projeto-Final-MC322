@@ -6,13 +6,12 @@ import app.model.Faculdade;
 import app.model.Turma;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.collections.SetChangeListener;
-import javafx.collections.SetChangeListener.Change;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
+import javafx.scene.image.Image;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
@@ -28,6 +27,7 @@ public class AtualizarTurma extends View<BorderPane> {
 	public AtualizarTurma(Stage stage, Turma turma) {
 		super(stage);
 		controller = new AtualizarTurmaController(this);
+		stage.getIcons().add(new Image("resources/img/iComp_logo.png"));
 
 		this.turma = turma;
 		GridPane centro = new GridPane();
@@ -50,6 +50,7 @@ public class AtualizarTurma extends View<BorderPane> {
 		Button botaoAdicionarAluno = new Button("Adicionar Aluno");
 		botaoAdicionarAluno.setOnAction(e -> {
 			var alunosIC = Faculdade.getIC().getAlunos();
+			
 		});
 
 		Button botaoConfirmar = new Button("Confirmar mudanças.");
