@@ -86,11 +86,7 @@ public class Aluno extends Pessoa {
     }
 
     public boolean addTurma(Turma t) {
-        if (turmas.contains(t)) {
-            return false;
-        }
-        turmas.add(t);
-        return true;
+        return turmas.add(t);
     }
 
     public boolean remTurma(String codigo) {

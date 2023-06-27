@@ -17,6 +17,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
@@ -62,8 +63,17 @@ public class AtualizarTurma extends View<BorderPane> {
 			Aluno aluno = alunosIC.get(ra);
 			if (aluno == null) {
 				Stage janelaErro = new Stage();
-				Label textoErro = new Label();
-				Scene cena = new Scene(null, 200, 100);
+				Label textoErro = new Label("Não existe aluno com ra " + ra);
+				Button botaoOK = new Button("OK");
+				botaoOK.setOnAction(_e -> {
+					janelaErro.close();
+				});
+				VBox root = new VBox(5, textoErro, botaoOK);
+				Scene cena = new Scene(root, 200, 100);
+				janelaErro.setScene(cena);
+				janelaErro.show();
+			} else {
+				aluno.addTurma(turma);
 			}
 		});
 
@@ -80,7 +90,9 @@ public class AtualizarTurma extends View<BorderPane> {
 		botaoVoltar.setPrefWidth(100);
 		HBox.setMargin(botaoVoltar, new Insets(10, 0, 50, 0));
 
-		principal = new BorderPane(centro);
+		VBox vbox = new VBox(5, centro, new Label("Alunos cadastrados"), listaAlunos, labelAluno, tfAluno, botaoAdicionarAluno);
+
+		principal = new BorderPane(vbox);
 		principal.setBottom(base);
 		base.setAlignment(Pos.TOP_CENTER);
 	}
