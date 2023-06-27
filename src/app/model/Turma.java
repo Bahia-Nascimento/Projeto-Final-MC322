@@ -18,6 +18,7 @@ public class Turma {
         this.listaAlunos = new ArrayList<Aluno>();
         this.professor = professor;
         this.professor.addTurma(this);
+        this.materia.addTurma(this);
     }
 
 
