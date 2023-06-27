@@ -12,7 +12,6 @@ public class Professor extends Pessoa{
     private final String cadastro;
     private ReadOnlySetProperty<Turma> turmas;
 
-
     public Professor(String cadastro, CPF cpf, String nome, LocalDate dataNascimento, LocalDate dataCadastro) {
         super(cpf, nome, dataNascimento, dataCadastro);
         this.cadastro = cadastro;
