@@ -22,6 +22,7 @@ public class MenuPrincipal extends View<BorderPane> {
 	public MenuPrincipal(Stage stage) {
 		super(stage);
 		controller = new MenuPrincipalController(this);
+		stage.getIcons().add(new Image("resources/img/iComp_logo.png"));
 
 		HBox topo = construirTopo();
 		GridPane centro = construirCentro();

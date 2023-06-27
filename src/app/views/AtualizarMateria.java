@@ -3,6 +3,7 @@ package app.views;
 import app.controllers.Controller;
 import app.model.Materia;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.text.Text;
@@ -13,7 +14,8 @@ public class AtualizarMateria extends View<BorderPane> {
 
 	public AtualizarMateria(Stage stage, Materia materia) {
 		super(stage);
-
+		stage.getIcons().add(new Image("resources/img/iComp_logo.png"));
+		
 		GridPane centro = new GridPane();
 
 		centro.addColumn(0, 

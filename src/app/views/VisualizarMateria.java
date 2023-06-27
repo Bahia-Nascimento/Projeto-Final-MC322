@@ -14,6 +14,7 @@ import javafx.scene.control.ListView;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.Image;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
@@ -30,6 +31,7 @@ public class VisualizarMateria extends View<BorderPane> {
 		super(stage);
 		this.materias = materias;
 		controller = new VisualizarMateriaController(this);
+		stage.getIcons().add(new Image("resources/img/iComp_logo.png"));
 
 		TableView<Materia> tabela = construirTabela();
 

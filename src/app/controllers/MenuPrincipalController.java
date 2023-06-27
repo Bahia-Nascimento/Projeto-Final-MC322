@@ -26,6 +26,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
@@ -46,7 +47,7 @@ public class MenuPrincipalController extends Controller<MenuPrincipal> {
 
 	public void atualizarAluno(ActionEvent _e, Stage stage) {
 		Stage janelaRA = new Stage();
-
+		janelaRA.getIcons().add(new Image("resources/img/iComp_logo.png"));
 		Label l = new Label("Insira o RA: ");
 		TextField tf = new TextField();
 		tf.textProperty().addListener((o, textoAntigo, textoNovo) -> {
@@ -97,7 +98,7 @@ public class MenuPrincipalController extends Controller<MenuPrincipal> {
 
 	public void atualizarProfessor(ActionEvent _e, Stage stage) {
 		Stage janelaCadastro = new Stage();
-
+		janelaCadastro.getIcons().add(new Image("resources/img/iComp_logo.png"));
 		Label l = new Label("Insira o Cadastro do Professor: ");
 		TextField tf = new TextField();
 		tf.textProperty().addListener((o, textoAntigo, textoNovo) -> {
@@ -142,7 +143,7 @@ public class MenuPrincipalController extends Controller<MenuPrincipal> {
 
 	public void atualizarTurma(ActionEvent _e, Stage stage) {
 		Stage janelaCodigo = new Stage();
-
+		janelaCodigo.getIcons().add(new Image("resources/img/iComp_logo.png"));
 		Label l = new Label("Insira o Codigo da Matéria: ");
 		TextField tf = new TextField();
 		l.setLabelFor(tf);
@@ -216,7 +217,7 @@ public class MenuPrincipalController extends Controller<MenuPrincipal> {
 
 	public void solicitarDiploma(ActionEvent _e) {
 		Stage janelaRA = new Stage();
-
+		janelaRA.getIcons().add(new Image("resources/img/iComp_logo.png"));
 		Label l = new Label("Insira o RA: ");
 		TextField tf = new TextField();
 		tf.textProperty().addListener((o, textoAntigo, textoNovo) -> {

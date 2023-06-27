@@ -7,6 +7,7 @@ import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
@@ -18,12 +19,12 @@ public class SolicitarDiploma extends View<BorderPane> {
 
     public SolicitarDiploma(Stage stage, Aluno aluno) {
         super(stage);
-
+        stage.getIcons().add(new Image("resources/img/iComp_logo.png"));
         controller = new SolicitarDiplomaController(this);
 
         if (aluno.solicitarDiploma() == false) {
             Stage janelaSD = new Stage();
-
+            janelaSD.getIcons().add(new Image("resources/img/iComp_logo.png"));
             Label l = new Label("  A solicitação de diploma do aluno " + aluno.getNome() + " não foi autorizada.\n" 
                                 + "  Faltam materias a serem realizadas.");
             l.setWrapText(true);
@@ -49,7 +50,7 @@ public class SolicitarDiploma extends View<BorderPane> {
 
         if (aluno.solicitarDiploma() == true) {
             Stage janelaSD = new Stage();
-
+            janelaSD.getIcons().add(new Image("resources/img/iComp_logo.png"));
             Label l = new Label("  A solicitação de diploma do aluno " + aluno.getNome() + " foi autorizada.");
             l.setWrapText(true);
             HBox centro = new HBox(10);

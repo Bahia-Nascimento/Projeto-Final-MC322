@@ -3,6 +3,7 @@ package app.views;
 
 import app.controllers.VisualizarTurmaController;
 import app.model.Aluno;
+import app.model.Professor;
 import app.model.Turma;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -15,6 +16,7 @@ import javafx.scene.control.ListView;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.Image;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
@@ -33,6 +35,7 @@ public class VisualizarTurma extends View<BorderPane> {
 		super(stage);
 		this.turmas = turmas;
 		controller = new VisualizarTurmaController(this);
+		stage.getIcons().add(new Image("resources/img/iComp_logo.png"));
 
 		TableView<Turma> tabela = construirTabela();
 

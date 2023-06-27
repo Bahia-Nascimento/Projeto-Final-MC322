@@ -2,7 +2,6 @@ package app.views;
 
 import app.Utils;
 import app.controllers.AtualizarProfessorController;
-import app.model.Faculdade;
 import app.model.Professor;
 import app.model.Turma;
 import javafx.collections.FXCollections;
@@ -13,6 +12,7 @@ import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
+import javafx.scene.image.Image;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
@@ -26,6 +26,7 @@ public class AtualizarProfessor extends View<BorderPane> {
 	public AtualizarProfessor(Stage stage, Professor professor) {
 		super(stage);
 		controller = new AtualizarProfessorController(this);
+		stage.getIcons().add(new Image("resources/img/iComp_logo.png"));
 
 		GridPane centro = new GridPane();
 
@@ -53,9 +54,6 @@ public class AtualizarProfessor extends View<BorderPane> {
 		ListView<Turma> listaTurmasProf = new ListView<>(turmasProf);
 		listaTurmasProf.setCellFactory(a -> new TurmaListCell());
 		listaTurmasProf.selectionModelProperty();
-
-		ObservableList<Turma> turmas = FXCollections.observableArrayList(Faculdade.getIC().getTurmas().values());
-		
 
 		Button botaoVoltar = new Button("Voltar");
 		botaoVoltar.setMinHeight(20);
