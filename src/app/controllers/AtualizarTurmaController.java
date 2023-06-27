@@ -1,5 +1,6 @@
 package app.controllers;
 
+import app.model.Aluno;
 import app.model.Faculdade;
 import app.model.Professor;
 import app.model.TurmaModel;
@@ -22,7 +23,7 @@ public class AtualizarTurmaController extends Controller<AtualizarTurma> {
 		model.hashCode();
 	}
 	
-	public void professorTf(String cadastroProfessor, String horario) {
+	public void professorTf(String cadastroProfessor, String horario, Aluno alunoARemover) {
 		boolean horarioValido = Validacao.validarHorario(horario);
 		Professor prof = Faculdade.getIC().getProfessores().get(cadastroProfessor);
 		if (horarioValido && prof != null) {
@@ -48,6 +49,9 @@ public class AtualizarTurmaController extends Controller<AtualizarTurma> {
 			janelaErro.setScene(cenaErro);
 			janelaErro.setTitle("iComp - Erro ao atualizar turma " + view.getTurma().getCodigo());
 			janelaErro.show();
+		}
+		if (alunoARemover != null) {
+			view.getTurma().remAluno(alunoARemover.getRa());
 		}
 	}
 }
