@@ -129,6 +129,8 @@ public class AtualizarAluno extends View<BorderPane> {
 		HBox listas = new HBox(20, listaGrade, botoes, listaCompletas);
 		listas.setAlignment(Pos.CENTER);
 
+		
+
 		Button botaoVoltar = new Button("Voltar");
 		botaoVoltar.setMinHeight(20);
 		botaoVoltar.setOnAction(controller::navigateHome);
